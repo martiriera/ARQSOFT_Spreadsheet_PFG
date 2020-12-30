@@ -9,11 +9,11 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-public class ANumber_Impl implements ANumber {
+public class ANumberImpl implements ANumber {
 
     public float value; 
 
-    public ANumber_Impl(float value) {
+    public ANumberImpl(float value) {
         this.value = value;
     }
 

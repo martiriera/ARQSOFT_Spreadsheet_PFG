@@ -9,18 +9,13 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-class Cell {
-    private CellCoordinate cellCoord; //TODO Necessary?
-    private Content cellContent;
+public class CellCoordinateImpl implements CellCoordinate{
+    public String columnComponent;
+    public int rowComponenent;
 
-    public Cell(Content cellContent) {
-        this.cellContent = cellContent;
+    public CellCoordinateImpl(String columnComponent, int rowComponenent) {
+        this.columnComponent = columnComponent;
+        this.rowComponenent = rowComponenent;
     }
-
-    public Content getCellContent() {
-        return cellContent;
-    }
-    
-    
-    
+  
 }

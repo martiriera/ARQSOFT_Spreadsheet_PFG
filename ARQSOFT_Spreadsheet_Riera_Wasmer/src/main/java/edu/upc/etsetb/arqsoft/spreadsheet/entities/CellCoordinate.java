@@ -5,13 +5,12 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operand;
 
 /**
  *
  * @author JuanCarlos
  */
-public interface CellCoordinate extends Operand, Argument{
+public interface CellCoordinate extends Operand {
 
 }

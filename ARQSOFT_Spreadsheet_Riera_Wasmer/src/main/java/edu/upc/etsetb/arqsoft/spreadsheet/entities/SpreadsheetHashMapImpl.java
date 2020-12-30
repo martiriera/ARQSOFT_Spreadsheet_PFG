@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-public class Spreadsheet_HashMapImpl implements Spreadsheet {
+public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public HashMap<CellCoordinate, Cell> cellMap;
     

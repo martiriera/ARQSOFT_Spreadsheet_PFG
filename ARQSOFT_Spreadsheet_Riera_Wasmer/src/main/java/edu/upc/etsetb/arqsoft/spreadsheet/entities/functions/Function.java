@@ -17,5 +17,5 @@ public interface Function extends Argument, Operand {
 
     public String getName();
 
-    public float calculateFunction();
+    public float getValue();
 }
