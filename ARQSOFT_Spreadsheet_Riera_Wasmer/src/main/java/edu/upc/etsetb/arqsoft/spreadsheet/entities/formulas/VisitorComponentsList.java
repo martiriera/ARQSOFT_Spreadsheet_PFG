@@ -20,7 +20,7 @@ public class VisitorComponentsList implements Visitor {
     private Stack<FormulaComponent> stack = new Stack();
 
     @Override
-    public void visitOperator(Operator operator) {
+    public void visitOperator(Operator operator) { //TODO: Validate this code
         float result = 0;
         FormulaComponent rightOperand = stack.pop();
         FormulaComponent leftOperand = stack.pop();
@@ -46,8 +46,8 @@ public class VisitorComponentsList implements Visitor {
 
     @Override
     public void visitCellCoordinate(CellCoordinate cellCoordinate) {
-        //TODO: Fer servir l'apaño del spreadsheet?
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell0)
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override

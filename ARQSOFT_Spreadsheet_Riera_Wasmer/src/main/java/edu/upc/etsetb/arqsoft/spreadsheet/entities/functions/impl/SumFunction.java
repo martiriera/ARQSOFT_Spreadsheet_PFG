@@ -26,8 +26,9 @@ public class SumFunction extends FunctionImpl {
         return result;
     }
 
+    // TODO: Review gets
     @Override
-    public float getArgumentValue() {
+    public float getArgumentValue() { 
         return this.calculateFunction();
     }
 
