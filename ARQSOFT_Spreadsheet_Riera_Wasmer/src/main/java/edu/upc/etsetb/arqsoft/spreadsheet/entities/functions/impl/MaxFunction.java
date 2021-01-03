@@ -19,16 +19,25 @@ public class MaxFunction extends FunctionImpl {
         return "MAX";
     }
 
-    @Override //TODO: Revisar que faci el que toca
-    public float getValue() {
-        Iterator<Argument> it = argumentsArrayList.iterator();
-        float maxValue = it.next().getValue();
+    public float calculateFunction() {
+        Iterator<Argument> it = replaceCoordinatesByCells(argumentsArrayList).iterator();
+        float maxValue = it.next().getArgumentValue();
         while (it.hasNext()) {
-            if (it.next().getValue() > maxValue) {
-                maxValue = it.next().getValue();
+            if (it.next().getArgumentValue() > maxValue) {
+                maxValue = it.next().getArgumentValue();
             }
         }
         return maxValue;
+    }
+
+    @Override
+    public float getArgumentValue() {
+        return this.calculateFunction();
+    }
+
+    @Override
+    public float getFormulaComponentValue() {
+       return this.calculateFunction();
     }
 
 }

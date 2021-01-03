@@ -13,6 +13,10 @@ import java.util.HashMap;
  */
 public class SpreadsheetHashMapImpl implements Spreadsheet {
 
-    public HashMap<CellCoordinate, Cell> cellMap;
+    public HashMap<CellCoordinateImpl, Cell> cellMap;
+    
+    public Cell getCell(CellCoordinateImpl cellCoord){
+        return cellMap.get(cellCoord);
+    }
     
 }

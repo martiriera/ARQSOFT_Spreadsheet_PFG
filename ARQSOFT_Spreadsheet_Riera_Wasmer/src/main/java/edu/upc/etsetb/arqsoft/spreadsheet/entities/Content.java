@@ -10,5 +10,6 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
  * @author Víctor Wasmer and Martí Riera
  */
 public interface Content {
-    
+    public float getFloatValue();
+    public String getStringValue();
 }

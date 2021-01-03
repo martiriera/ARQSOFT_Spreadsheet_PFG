@@ -5,13 +5,14 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
+
 /**
  *
  * @author Víctor Wasmer and Martí Riera
  */
-class Cell {
-    private CellCoordinate cellCoord; //TODO Necessary?
-    private Content cellContent;
+class Cell implements Argument {
+    private Content cellContent; // TODO: Can be final?
 
     public Cell(Content cellContent) {
         this.cellContent = cellContent;
@@ -21,6 +22,9 @@ class Cell {
         return cellContent;
     }
     
-    
+    @Override
+    public float getArgumentValue() {
+       return cellContent.getFloatValue();
+    }
     
 }

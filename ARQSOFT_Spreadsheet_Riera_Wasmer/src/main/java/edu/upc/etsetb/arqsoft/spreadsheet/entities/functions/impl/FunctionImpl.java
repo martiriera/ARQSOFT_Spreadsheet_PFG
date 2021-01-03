@@ -5,6 +5,9 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 import java.util.ArrayList;
@@ -16,9 +19,24 @@ import java.util.ArrayList;
 public abstract class FunctionImpl implements Function {
 
     protected ArrayList<Argument> argumentsArrayList;
+    protected SpreadsheetHashMapImpl spreadsheet;
 
     @Override
     public void addArgument(Argument arg) {
         argumentsArrayList.add(arg);
+    }
+
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        visitor.visitFunction(this);
+    }
+
+    public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
+        for (Argument argument : args) {
+            if (argument instanceof CellCoordinateImpl) {
+                args.set(args.indexOf(argument), spreadsheet.getCell((CellCoordinateImpl) argument));
+            }
+        }
+        return args;
     }
 }

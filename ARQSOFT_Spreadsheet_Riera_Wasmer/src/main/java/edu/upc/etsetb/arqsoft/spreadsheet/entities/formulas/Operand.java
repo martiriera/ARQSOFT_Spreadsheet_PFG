@@ -9,6 +9,6 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
  *
  * @author JuanCarlos
  */
-public interface Operand extends FormulaComponent{
+public interface Operand extends FormulaComponent {
     
 }

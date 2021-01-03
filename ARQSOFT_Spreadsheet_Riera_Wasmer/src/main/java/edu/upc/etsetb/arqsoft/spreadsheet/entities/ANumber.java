@@ -13,6 +13,4 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  * @author JuanCarlos
  */
 public interface ANumber extends Content, Argument, Operand {
-    @Override
-    float getValue();
 }

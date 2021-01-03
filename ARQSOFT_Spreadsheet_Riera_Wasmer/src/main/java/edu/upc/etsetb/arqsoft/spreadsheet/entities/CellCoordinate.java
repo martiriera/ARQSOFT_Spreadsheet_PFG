@@ -6,11 +6,12 @@
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operand;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 
 /**
  *
  * @author JuanCarlos
  */
-public interface CellCoordinate extends Operand {
-
+public interface CellCoordinate extends Operand, Argument {
+    
 }
