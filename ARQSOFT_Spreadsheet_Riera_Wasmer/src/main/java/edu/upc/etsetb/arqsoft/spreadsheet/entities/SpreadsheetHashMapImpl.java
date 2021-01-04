@@ -24,7 +24,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public Range getRangeofCells(CellCoordinateImpl originCellCoord, CellCoordinateImpl finalCellCoord) {
 
-        List<String> columnsToIterate = this.getColumnArray(originCellCoord.columnComponent, finalCellCoord.columnComponent);
+        List<String> columnsToIterate = this.getColumnsList(originCellCoord.columnComponent, finalCellCoord.columnComponent);
         int numberOfColumns = columnsToIterate.size();
         int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
 
@@ -43,10 +43,18 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     }
 
-    public List<String> getColumnArray(String initialColumn, String finalColumn) {
+    public List<String> getColumnsList(String initialColumn, String finalColumn) {
         ArrayList<String> columnArray = new ArrayList();
         int i = 0;
-        String aux = initialColumn;
+        String aux = "";
+
+        // Prevent second coord "smaller" than first coord. If so, swap coordinates.
+        if (initialColumn.charAt(0) > finalColumn.charAt(0) || initialColumn.length() > finalColumn.length()) {
+            String temp = initialColumn;
+            initialColumn = finalColumn;
+            finalColumn = temp;
+        }
+
         while (!aux.equals(finalColumn)) {
             char c = (char) ('A' + (i % 26));
             aux = c + "";
