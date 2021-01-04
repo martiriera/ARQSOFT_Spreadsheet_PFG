@@ -11,7 +11,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-class Cell implements Argument {
+public class Cell implements Argument {
     private Content cellContent; 
 
     public Cell(Content cellContent) {
@@ -26,5 +26,5 @@ class Cell implements Argument {
     public float getArgumentValue() {
        return cellContent.getFloatValue();
     }
-    
+
 }

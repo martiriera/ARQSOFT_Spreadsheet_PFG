@@ -14,7 +14,7 @@ import java.util.List;
 public class EvaluatorPostFix {
 
     public float evaluatePostFix(List<FormulaComponent> formulaComponents) {
-        VisitorComponentsList visitor = new VisitorComponentsList();
+        VisitorFormulaComponents visitor = new VisitorFormulaComponents();
         
         for(FormulaComponent component : formulaComponents){
            component.acceptVisitor(visitor);

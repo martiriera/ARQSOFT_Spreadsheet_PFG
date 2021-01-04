@@ -31,7 +31,7 @@ public abstract class FunctionImpl implements Function {
         visitor.visitFunction(this);
     }
     
-    //TODO: Review substitution
+    //TODO: Validate this substitution
     public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
         for (Argument argument : args) {
             if (argument instanceof CellCoordinateImpl) {
