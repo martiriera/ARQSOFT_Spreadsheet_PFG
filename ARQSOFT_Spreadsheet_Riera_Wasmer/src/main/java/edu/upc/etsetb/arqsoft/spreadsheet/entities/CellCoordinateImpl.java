@@ -12,7 +12,9 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
  * @author Víctor Wasmer and Martí Riera
  */
 public class CellCoordinateImpl implements CellCoordinate {
+
     public String columnComponent;
+
     public int rowComponenent;
 
     public CellCoordinateImpl(String columnComponent, int rowComponenent) {
@@ -20,21 +22,19 @@ public class CellCoordinateImpl implements CellCoordinate {
         this.rowComponenent = rowComponenent;
     }
 
-//    @Override
-//    public float getArgumentValue() {
-//        throw new UnsupportedOperationException("CellCoordinateImpl Exception ARG"); 
-//    }
-//    
-//    @Override
-//    public float getFormulaComponentValue() {
-//        throw new UnsupportedOperationException("ellCoordinateImpl Exception FCOMP"); 
-//    }
-    
+    @Override
+    public float getArgumentValue() {
+        throw new UnsupportedOperationException("CellCoordinateImpl getArgumentValue");
+    }
+
+    @Override
+    public float getFormulaComponentValue() {
+        throw new UnsupportedOperationException("ellCoordinateImpl getFormulaComponentValue");
+    }
 
     @Override
     public void acceptVisitor(Visitor visitor) {
         visitor.visitCellCoordinate(this);
     }
 
-   
 }

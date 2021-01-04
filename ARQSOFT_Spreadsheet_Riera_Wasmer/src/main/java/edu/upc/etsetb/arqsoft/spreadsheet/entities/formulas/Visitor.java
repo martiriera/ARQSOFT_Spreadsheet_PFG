@@ -6,7 +6,7 @@
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 
 /**
@@ -17,7 +17,7 @@ public interface Visitor {
 
     void visitANumber(ANumber aNumber);
 
-    void visitCellCoordinate(CellCoordinateImpl cellCoordinate); // TODO: Impl correct (others not)?
+    void visitCellCoordinate(CellCoordinate cellCoordinate); // TODO: Impl correct (others not)?
 
     void visitFunction(Function function);
 

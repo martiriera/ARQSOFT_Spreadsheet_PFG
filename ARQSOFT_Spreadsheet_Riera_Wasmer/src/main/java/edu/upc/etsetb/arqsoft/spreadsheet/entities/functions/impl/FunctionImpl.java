@@ -36,6 +36,8 @@ public abstract class FunctionImpl implements Function {
         for (Argument argument : args) {
             if (argument instanceof CellCoordinateImpl) {
                 args.set(args.indexOf(argument), spreadsheet.getCell((CellCoordinateImpl) argument));
+            }else if(argument instanceof){
+            
             }
         }
         return args;

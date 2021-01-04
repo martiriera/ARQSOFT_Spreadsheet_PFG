@@ -7,7 +7,7 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumberImpl;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 import java.util.Stack;
@@ -47,7 +47,7 @@ public class VisitorFormulaComponents implements Visitor {
     }
 
     @Override
-    public void visitCellCoordinate(CellCoordinateImpl cellCoordinate) {
+    public void visitCellCoordinate(CellCoordinate cellCoordinate) {
         //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell)
         float cellContentFloatValue = spreadsheet.getCell(cellCoordinate).getCellContent().getFloatValue();
         stack.push(new ANumberImpl(cellContentFloatValue));

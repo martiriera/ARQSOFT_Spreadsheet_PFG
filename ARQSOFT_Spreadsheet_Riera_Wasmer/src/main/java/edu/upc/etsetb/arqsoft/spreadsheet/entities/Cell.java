@@ -5,6 +5,7 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 
 /**
@@ -25,6 +26,16 @@ public class Cell implements Argument {
     @Override
     public float getArgumentValue() {
        return cellContent.getFloatValue();
+    }
+
+    @Override
+    public void acceptVisitor(Visitor visitor) {
+        throw new UnsupportedOperationException("Cell acceptVisitor Exception"); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public float getFormulaComponentValue() {
+        throw new UnsupportedOperationException("Cell getFormulaComponentValue Exception"); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
