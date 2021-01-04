@@ -12,7 +12,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  * @author Víctor Wasmer and Martí Riera
  */
 class Cell implements Argument {
-    private Content cellContent; // TODO: Can be final?
+    private Content cellContent; 
 
     public Cell(Content cellContent) {
         this.cellContent = cellContent;
