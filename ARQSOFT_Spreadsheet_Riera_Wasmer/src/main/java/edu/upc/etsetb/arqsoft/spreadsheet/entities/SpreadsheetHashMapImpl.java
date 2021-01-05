@@ -44,30 +44,28 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     }
 
     public List<String> getColumnsList(String initialColumn, String finalColumn) {
+        // Prevent second coord "smaller" than first coord. If so, swap coordinates.
+//        if (initialColumn.charAt(0) > finalColumn.charAt(0) || initialColumn.length() > finalColumn.length()) {
+//            String temp = initialColumn;
+//            initialColumn = finalColumn;
+//            finalColumn = temp;
+//        }
+
         ArrayList<String> columnArray = new ArrayList();
         int i = 0;
         String aux = "";
-
-        // Prevent second coord "smaller" than first coord. If so, swap coordinates.
-        if (initialColumn.charAt(0) > finalColumn.charAt(0) || initialColumn.length() > finalColumn.length()) {
-            String temp = initialColumn;
-            initialColumn = finalColumn;
-            finalColumn = temp;
-        }
-
         while (!aux.equals(finalColumn)) {
-            char c = (char) ('A' + (i % 26));
+            char c = (char) ('A' + (i % 26)); // From 'A' to 'Z' 
             aux = c + "";
-            System.out.println(aux);
-            if (i > 25) {
+            if (i > 25) { // When finalColumn is greater than 'Z'
                 aux = columnArray.get((i / 26) - 1) + "" + c;
             }
-            i++;
             columnArray.add(aux);
+            i++;
         }
+        // Trim array starting with 'A' from initial column to final column
         int fromIndex = columnArray.indexOf(initialColumn);
         int toIndex = columnArray.indexOf(finalColumn) + 1;
-        // Trim array from initial column to final column
         return (columnArray.subList(fromIndex, toIndex));
 
     }
