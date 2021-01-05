@@ -10,10 +10,11 @@
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/functions/Argument.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/factories/SpreadsheetFactory.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/SpreadsheetHashMapImpl.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/FormulaCell.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/Content.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/CellCoordinate.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Visitor.java
-/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/FormulaImpl.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/RangeImpl.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/factories/impl/DefaultFactory.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Formula.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/Spreadsheet.java
@@ -27,8 +28,8 @@
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/ANumberImpl.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/UnknownTokenTypeException.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Operator.java
-/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/VisitorComponentsList.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/TokenType.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/VisitorFormulaComponents.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Operand.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/BadTokenException.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/FormulaComponent.java

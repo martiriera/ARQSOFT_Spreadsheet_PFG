@@ -9,7 +9,6 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-public interface Content {
-    public double getValueAsDouble();
-    public String getValueAsString();
+class BadCoordinateException extends Exception {
+    
 }

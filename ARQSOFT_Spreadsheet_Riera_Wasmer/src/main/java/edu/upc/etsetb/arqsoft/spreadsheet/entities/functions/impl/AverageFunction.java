@@ -18,8 +18,8 @@ public class AverageFunction extends FunctionImpl {
         return "AVG";
     }
 
-    public float calculateFunction() {
-        float average = 0;
+    public double calculateFunction() {
+        double average = 0;
         for (Argument argument : replaceCoordinatesByCells(argumentsArrayList)) {
             average = average + argument.getArgumentValue();
         }
@@ -29,12 +29,12 @@ public class AverageFunction extends FunctionImpl {
     }
 
     @Override
-    public float getArgumentValue() {
+    public double getArgumentValue() {
         return this.calculateFunction();
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         return this.calculateFunction();
     }
 

@@ -18,8 +18,8 @@ public class SumFunction extends FunctionImpl {
         return "SUM";
     }
 
-    public float calculateFunction() {
-        float result = 0;
+    public double calculateFunction() {
+        double result = 0;
         for (Argument argument : replaceCoordinatesByCells(argumentsArrayList)) {
             result = result + argument.getArgumentValue();
         }
@@ -28,12 +28,12 @@ public class SumFunction extends FunctionImpl {
 
     // TODO: Review gets
     @Override
-    public float getArgumentValue() { 
+    public double getArgumentValue() { 
         return this.calculateFunction();
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         return this.calculateFunction();
     }
 

@@ -23,7 +23,7 @@ public class VisitorFormulaComponents implements Visitor {
 
     @Override
     public void visitOperator(Operator operator) { //TODO: Validate this code
-        float result = 0;
+        double result = 0;
         FormulaComponent rightOperand = stack.pop();
         FormulaComponent leftOperand = stack.pop();
         
@@ -49,8 +49,8 @@ public class VisitorFormulaComponents implements Visitor {
     @Override
     public void visitCellCoordinate(CellCoordinate cellCoordinate) {
         //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell)
-        float cellContentFloatValue = spreadsheet.getCell(cellCoordinate).getCellContent().getFloatValue();
-        stack.push(new ANumberImpl(cellContentFloatValue));
+        double cellContentDoubleValue = spreadsheet.getCell(cellCoordinate).getCellContent().getValueAsDouble();
+        stack.push(new ANumberImpl(cellContentDoubleValue));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class VisitorFormulaComponents implements Visitor {
         stack.push(function);
     }
 
-    public float getResult() {
+    public double getResult() {
         return stack.pop().getFormulaComponentValue();
     }
 

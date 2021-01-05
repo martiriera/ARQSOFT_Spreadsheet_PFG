@@ -19,10 +19,9 @@ public class RangeImpl implements Range{
     public RangeImpl(HashMap<CellCoordinate, Cell> cellRangeMap) {
         this.cellRangeMap = cellRangeMap;
     }
-
-
+    
     @Override
-    public float getArgumentValue() {
+    public double getArgumentValue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,7 +31,7 @@ public class RangeImpl implements Range{
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         throw new UnsupportedOperationException("RangeImpl getFormulaComponentValue Exception"); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -12,20 +12,21 @@ import static java.lang.Float.parseFloat;
  * @author Víctor Wasmer and Martí Riera
  */
 public class TextImpl implements Text {
-    public String value; 
+
+    public String value;
 
     public TextImpl(String value) {
         this.value = value;
     }
 
     @Override
-    public String getStringValue() {
+    public String getValueAsString() {
         return value;
     }
 
     @Override
-    public float getFloatValue() {
+    public double getValueAsDouble() {
         throw new UnsupportedOperationException("TextImpl Exception");
     }
-    
+
 }

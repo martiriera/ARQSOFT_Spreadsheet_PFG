@@ -23,12 +23,12 @@ public class CellCoordinateImpl implements CellCoordinate {
     }
 
     @Override
-    public float getArgumentValue() {
+    public double getArgumentValue() {
         throw new UnsupportedOperationException("CellCoordinateImpl getArgumentValue");
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         throw new UnsupportedOperationException("ellCoordinateImpl getFormulaComponentValue");
     }
 

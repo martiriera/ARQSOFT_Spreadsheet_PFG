@@ -5,7 +5,9 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaCell;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

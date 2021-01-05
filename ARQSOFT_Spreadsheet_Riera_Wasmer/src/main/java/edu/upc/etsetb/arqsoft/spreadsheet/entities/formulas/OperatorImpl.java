@@ -37,7 +37,7 @@ public class OperatorImpl implements Operator {
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         throw new UnsupportedOperationException("OperatorImpl Exception"); 
     }
     

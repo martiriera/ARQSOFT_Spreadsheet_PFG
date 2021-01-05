@@ -18,24 +18,36 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public HashMap<CellCoordinate, Cell> cellMap;
 
+    public void setCellContent(String cellCoord, String content) throws ContentException, BadCoordinateException {
+        // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
+        String[] separateCoordinate = cellCoord.split("(?<=\\D)(?=\\d)");
+        
+        CellCoordinateImpl targetCoordinate = new CellCoordinateImpl(separateCoordinate[0], Integer.parseInt(separateCoordinate[1]));
+        Cell targetCell = new Cell(new TextImpl(content));
+        cellMap.put(targetCoordinate, targetCell);
+    }
+
     public Cell getCell(CellCoordinate cellCoord) {
         return cellMap.get(cellCoord);
     }
 
     public Range getRangeofCells(CellCoordinateImpl originCellCoord, CellCoordinateImpl finalCellCoord) {
 
-        List<String> columnsToIterate = this.getColumnsList(originCellCoord.columnComponent, finalCellCoord.columnComponent);
-        int numberOfColumns = columnsToIterate.size();
-        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
-
         HashMap<CellCoordinate, Cell> rangeMap = new HashMap<>();
 
+        List<String> columnsToIterate = this.getColumnsList(originCellCoord.columnComponent, finalCellCoord.columnComponent);
+        int numberOfColumns = columnsToIterate.size();
+//        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
+
         for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
-            for (int rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-                CellCoordinateImpl cellToPutCoordinate = new CellCoordinateImpl(columnsToIterate.get(columnIndex), rowIndex);
-                Cell cellToPut = this.getCell(cellToPutCoordinate);
+            for (int rowIndex = originCellCoord.rowComponenent; rowIndex <= finalCellCoord.rowComponenent; rowIndex++) {
+                CellCoordinateImpl coordinateOfCellToPut = new CellCoordinateImpl(columnsToIterate.get(columnIndex), rowIndex);
+                Cell cellToPut = this.getCell(coordinateOfCellToPut);
                 if (cellToPut != null) {
-                    rangeMap.put(finalCellCoord, cellToPut);
+                    rangeMap.put(coordinateOfCellToPut, cellToPut);
+                } else {
+                    // Put to the range the cell already, but with content 0
+                    rangeMap.put(coordinateOfCellToPut, new Cell(new ANumberImpl(0)));
                 }
             }
         }

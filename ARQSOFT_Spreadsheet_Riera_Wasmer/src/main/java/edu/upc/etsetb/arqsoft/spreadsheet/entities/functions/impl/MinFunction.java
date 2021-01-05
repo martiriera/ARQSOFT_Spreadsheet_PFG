@@ -19,9 +19,9 @@ public class MinFunction extends FunctionImpl {
         return "MIN";
     }
 
-    public float calculateFunction() {
+    public double calculateFunction() {
         Iterator<Argument> it = replaceCoordinatesByCells(argumentsArrayList).iterator();
-        float minValue = it.next().getArgumentValue();
+        double minValue = it.next().getArgumentValue();
         while (it.hasNext()) {
             if (it.next().getArgumentValue() < minValue) {
                 minValue = it.next().getArgumentValue();
@@ -31,12 +31,12 @@ public class MinFunction extends FunctionImpl {
     }
 
     @Override
-    public float getArgumentValue() {
+    public double getArgumentValue() {
         return this.calculateFunction();
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         return this.calculateFunction();
     }
 

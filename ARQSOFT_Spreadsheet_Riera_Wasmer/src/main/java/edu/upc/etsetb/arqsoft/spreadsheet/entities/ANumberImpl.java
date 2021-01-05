@@ -13,29 +13,29 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
  */
 public class ANumberImpl implements ANumber {
 
-    public float value;
+    public double value;
 
-    public ANumberImpl(float value) {
+    public ANumberImpl(double value) {
         this.value = value;
     }
 
     @Override
-    public float getFloatValue() {
+    public double getValueAsDouble() {
         return value;
     }
 
     @Override
-    public String getStringValue() {
+    public String getValueAsString() {
         return String.valueOf(value);
     }
 
     @Override
-    public float getArgumentValue() {
+    public double getArgumentValue() {
         return value;
     }
-
+    
     @Override
-    public float getFormulaComponentValue() {
+    public double getFormulaComponentValue() {
         return value;
     }
 
@@ -43,5 +43,7 @@ public class ANumberImpl implements ANumber {
     public void acceptVisitor(Visitor visitor) {
         visitor.visitANumber(this);
     }
+
+  
 
 }

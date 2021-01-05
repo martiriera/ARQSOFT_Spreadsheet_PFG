@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class EvaluatorPostFix {
 
-    public float evaluatePostFix(List<FormulaComponent> formulaComponents) {
+    public double evaluatePostFix(List<FormulaComponent> formulaComponents) {
         VisitorFormulaComponents visitor = new VisitorFormulaComponents();
         
         for(FormulaComponent component : formulaComponents){

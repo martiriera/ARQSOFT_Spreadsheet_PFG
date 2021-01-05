@@ -14,7 +14,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  */
 public class Cell implements Argument {
 
-    private Content cellContent;
+    public Content cellContent;
 
     public Cell(Content cellContent) {
         this.cellContent = cellContent;
@@ -23,14 +23,18 @@ public class Cell implements Argument {
     public Content getCellContent() {
         return cellContent;
     }
-
-    @Override
-    public float getArgumentValue() {
-        return cellContent.getFloatValue();
+    
+    public String getFormula(){
+        return cellContent.getValueAsString();
     }
 
     @Override
-    public float getFormulaComponentValue() {
+    public double getArgumentValue() {
+        return cellContent.getValueAsDouble();
+    }
+    
+    @Override
+    public double getFormulaComponentValue() {
         throw new UnsupportedOperationException("Cell getFormulaComponentValue Exception"); //To change body of generated methods, choose Tools | Templates.
     }
 

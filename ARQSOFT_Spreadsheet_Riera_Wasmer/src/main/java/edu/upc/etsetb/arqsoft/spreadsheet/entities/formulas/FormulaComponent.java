@@ -11,5 +11,5 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
  */
 public interface FormulaComponent {
     void acceptVisitor(Visitor visitor);
-    float getFormulaComponentValue();
+    double getFormulaComponentValue();
 }

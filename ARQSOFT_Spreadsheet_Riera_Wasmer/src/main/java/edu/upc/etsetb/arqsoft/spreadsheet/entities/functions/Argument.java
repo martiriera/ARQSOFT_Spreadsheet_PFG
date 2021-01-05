@@ -12,6 +12,6 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
  * @author Juan Carlos Cruellas at Universidad Politécnica de Cataluña
  */
 public interface Argument extends FormulaComponent{
-    float getArgumentValue();
+    double getArgumentValue();
     //TODO: If this if extends FormulaComponent, Cell has to implement acceptVisitor method
 }
