@@ -5,6 +5,8 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
+
 /**
  *
  * @author Víctor Wasmer and Martí Riera
@@ -12,4 +14,5 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 public interface Content {
     public float getFloatValue();
     public String getStringValue();
+    public String getFormula();
 }

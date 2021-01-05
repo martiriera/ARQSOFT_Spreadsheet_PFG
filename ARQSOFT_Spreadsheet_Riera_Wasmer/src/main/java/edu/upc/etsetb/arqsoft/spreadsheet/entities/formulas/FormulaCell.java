@@ -5,10 +5,18 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Content;
+
 /**
  *
  * @author Víctor Wasmer and Martí Riera
  */
-public class FormulaImpl implements Formula {
+public class FormulaCell implements Content {
+    
+    public String formulaString;
+
+    public FormulaCell(String formulaString) {
+        this.formulaString = formulaString;
+    }
     
 }
