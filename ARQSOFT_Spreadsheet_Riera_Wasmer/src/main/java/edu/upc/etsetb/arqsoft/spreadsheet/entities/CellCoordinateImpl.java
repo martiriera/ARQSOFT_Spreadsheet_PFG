@@ -14,7 +14,6 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
 public class CellCoordinateImpl implements CellCoordinate {
 
     public String columnComponent;
-
     public int rowComponenent;
 
     public CellCoordinateImpl(String columnComponent, int rowComponenent) {
@@ -36,5 +35,7 @@ public class CellCoordinateImpl implements CellCoordinate {
     public void acceptVisitor(Visitor visitor) {
         visitor.visitCellCoordinate(this);
     }
+
+
 
 }

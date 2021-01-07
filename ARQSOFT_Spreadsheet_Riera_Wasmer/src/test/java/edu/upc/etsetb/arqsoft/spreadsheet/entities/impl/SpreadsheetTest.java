@@ -7,8 +7,10 @@
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.impl;
 
 // CHANGE THESE IMPORTS AS PER YOUR OWN PACKAGES
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.UnkownFactoryException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.formulas.evaluator.FormulaEvaluator;
@@ -31,11 +33,11 @@ public class SpreadsheetTest {
     private Spreadsheet instance;
 
     public SpreadsheetTest()
-            throws ContentException, UnkownFactoryException {
+            throws ContentException, UnkownFactoryException, BadCoordinateException {
         // IMPORTANT: REPLACE WITH A SET OF SENTENCES THAT GENERATE AN 
         // ENVIRONMENT READY FOR SETTING CONTENTS IN CELLS OF THE SPREADSHEET 
         // AND FOR COMPUTING VALUES FOR THESE CONTENTS.
-        this.instance = SpreadsheetImpl.getInstance();
+        this.instance = SpreadsheetHashMapImpl.getInstance();
         SpreadsheetFactory factory = SpreadsheetFactory.getInstance("DEFAULT");
         this.instance.setFactory(factory);
         FormulaEvaluator formEvaluator = factory.createFormulaEvaluator();

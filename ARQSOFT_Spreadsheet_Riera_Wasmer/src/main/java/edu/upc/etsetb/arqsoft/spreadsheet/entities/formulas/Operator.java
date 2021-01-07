@@ -43,5 +43,7 @@ public interface Operator extends FormulaComponent{
      * @return true if the operator is the division (/) operator, false otherwise
      */    
     public boolean isDiv() ;
+
+    public double operate(FormulaComponent leftOperand, FormulaComponent rightOperand);
     
 }

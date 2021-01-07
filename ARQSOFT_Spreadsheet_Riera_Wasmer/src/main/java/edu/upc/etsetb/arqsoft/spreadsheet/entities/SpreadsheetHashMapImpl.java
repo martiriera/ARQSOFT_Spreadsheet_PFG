@@ -5,6 +5,7 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.impl.MyFactory;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,14 +18,21 @@ import java.util.List;
 public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public HashMap<CellCoordinate, Cell> cellMap;
+    public MyFactory factory;
 
+    @Override
     public void setCellContent(String cellCoord, String content) throws ContentException, BadCoordinateException {
         // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
         String[] separateCoordinate = cellCoord.split("(?<=\\D)(?=\\d)");
-        
+
         CellCoordinateImpl targetCoordinate = new CellCoordinateImpl(separateCoordinate[0], Integer.parseInt(separateCoordinate[1]));
         Cell targetCell = new Cell(new TextImpl(content));
         cellMap.put(targetCoordinate, targetCell);
+    }
+
+    @Override
+    public double getCellContentAsDouble(String b11) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Cell getCell(CellCoordinate cellCoord) {
@@ -81,4 +89,5 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         return (columnArray.subList(fromIndex, toIndex));
 
     }
+
 }

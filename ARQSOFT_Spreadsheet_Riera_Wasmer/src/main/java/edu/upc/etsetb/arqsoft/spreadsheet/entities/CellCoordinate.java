@@ -13,5 +13,35 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  * @author JuanCarlos
  */
 public interface CellCoordinate extends Operand, Argument {
-    
+
+    public static boolean coordinateValidation(String coordinate) {
+        // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
+        String[] separateCoordinate = coordinate.split("(?<=\\D)(?=\\d)");
+
+        return isValidColumn(separateCoordinate[0]) & isValidRow(separateCoordinate[1]);
+    }
+
+    public static boolean isValidRow(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean isValidColumn(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (!(c >= 'A' && c <= 'Z')) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
 }

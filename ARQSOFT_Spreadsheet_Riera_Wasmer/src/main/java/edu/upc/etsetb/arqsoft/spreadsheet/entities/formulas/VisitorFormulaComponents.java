@@ -6,9 +6,9 @@
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumberImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 import java.util.Stack;
 
@@ -19,26 +19,23 @@ import java.util.Stack;
 public class VisitorFormulaComponents implements Visitor {
 
     private Stack<FormulaComponent> stack = new Stack();
-    private SpreadsheetHashMapImpl spreadsheet;
+    private Spreadsheet spreadsheet;
+    private SpreadsheetFactory factory;
+    
+    public VisitorFormulaComponents(Spreadsheet spreadsheet,SpreadsheetFactory factory ) {
+        this.spreadsheet = spreadsheet;
+        this.factory = factory;
+    }
 
     @Override
-    public void visitOperator(Operator operator) { //TODO: Validate this code
+    public void visitOperator(Operator operator) {
         double result = 0;
+        
         FormulaComponent rightOperand = stack.pop();
         FormulaComponent leftOperand = stack.pop();
-        
-        if (operator.isAdd()) {
-            result = leftOperand.getFormulaComponentValue() + rightOperand.getFormulaComponentValue();
-        } else if (operator.isSubs()) {
-            result = leftOperand.getFormulaComponentValue() - rightOperand.getFormulaComponentValue();
-        } else if (operator.isMult()) {
-            result = leftOperand.getFormulaComponentValue() * rightOperand.getFormulaComponentValue();
-        } else if (operator.isDiv()) {
-            result = leftOperand.getFormulaComponentValue() / rightOperand.getFormulaComponentValue();
-        }
-        
-        stack.push(new ANumberImpl(result));
-        
+
+        result = operator.operate(leftOperand, rightOperand);
+        stack.push(factory.createNumber(result));
     }
 
     @Override
@@ -50,7 +47,7 @@ public class VisitorFormulaComponents implements Visitor {
     public void visitCellCoordinate(CellCoordinate cellCoordinate) {
         //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell)
         double cellContentDoubleValue = spreadsheet.getCell(cellCoordinate).getCellContent().getValueAsDouble();
-        stack.push(new ANumberImpl(cellContentDoubleValue));
+        stack.push(factory.createNumber(cellContentDoubleValue));
     }
 
     @Override
@@ -61,5 +58,5 @@ public class VisitorFormulaComponents implements Visitor {
     public double getResult() {
         return stack.pop().getFormulaComponentValue();
     }
-
+    
 }

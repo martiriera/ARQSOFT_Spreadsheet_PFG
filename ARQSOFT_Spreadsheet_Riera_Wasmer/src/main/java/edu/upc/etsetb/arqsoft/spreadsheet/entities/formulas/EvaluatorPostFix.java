@@ -5,6 +5,8 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import java.util.List;
 
 /**
@@ -13,12 +15,20 @@ import java.util.List;
  */
 public class EvaluatorPostFix {
 
+    private Spreadsheet spreadsheet;
+    private SpreadsheetFactory factory;
+
+    public EvaluatorPostFix(Spreadsheet spreadsheet, SpreadsheetFactory factory) {
+        this.spreadsheet = spreadsheet;
+        this.factory = factory;
+    }
+
     public double evaluatePostFix(List<FormulaComponent> formulaComponents) {
-        VisitorFormulaComponents visitor = new VisitorFormulaComponents();
-        
-        for(FormulaComponent component : formulaComponents){
-           component.acceptVisitor(visitor);
+        VisitorFormulaComponents visitor = new VisitorFormulaComponents(spreadsheet,factory);
+   
+        for (FormulaComponent component : formulaComponents) {
+            component.acceptVisitor(visitor);
         }
-        return visitor.getResult();       
+        return visitor.getResult();
     }
 }

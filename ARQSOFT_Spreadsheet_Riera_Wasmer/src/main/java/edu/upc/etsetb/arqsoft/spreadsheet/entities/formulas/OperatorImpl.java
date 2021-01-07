@@ -11,24 +11,31 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
  */
 public class OperatorImpl implements Operator {
 
+    String operator;
+
+    public OperatorImpl(String operator) {
+        this.operator = operator;
+    }
+
     @Override
     public boolean isAdd() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return operator == "+";
     }
 
     @Override
     public boolean isSubs() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return operator == "-";
+
     }
 
     @Override
     public boolean isMult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return operator == "*";
     }
 
     @Override
     public boolean isDiv() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return operator == "/";
     }
 
     @Override
@@ -38,7 +45,22 @@ public class OperatorImpl implements Operator {
 
     @Override
     public double getFormulaComponentValue() {
-        throw new UnsupportedOperationException("OperatorImpl Exception"); 
+        throw new UnsupportedOperationException("OperatorImpl Exception");
     }
-    
+
+    @Override
+    public double operate(FormulaComponent leftOperand, FormulaComponent rightOperand) {
+        if (this.isAdd()) {
+            return leftOperand.getFormulaComponentValue() + rightOperand.getFormulaComponentValue();
+        } else if (this.isSubs()) {
+            return leftOperand.getFormulaComponentValue() - rightOperand.getFormulaComponentValue();
+        } else if (this.isMult()) {
+            return leftOperand.getFormulaComponentValue() * rightOperand.getFormulaComponentValue();
+        } else if (this.isDiv()) {
+            return leftOperand.getFormulaComponentValue() / rightOperand.getFormulaComponentValue();
+        }
+        throw new UnknownOperatorException("Unknown Operator: " + this.operator);
+
+    }
+
 }

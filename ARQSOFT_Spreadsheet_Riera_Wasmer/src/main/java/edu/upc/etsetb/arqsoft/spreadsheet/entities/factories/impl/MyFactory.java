@@ -12,6 +12,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Tokenizer;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.UnknownTokenTypeException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumberImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
@@ -24,6 +25,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType;
 import java.util.List;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 
 /**
@@ -54,8 +56,8 @@ public class MyFactory extends SpreadsheetFactory {
     @Override
     public PostFixGenerator createPostFixGenerator() {
         return PostFixGeneratorImpl.getInstance();
-    }   
-    
+    }
+
     @Override
     public Operator createOperator(String opText) throws IllegalArgumentException {
         throw new UnsupportedOperationException("createOperator() not supported yet.");
@@ -91,13 +93,12 @@ public class MyFactory extends SpreadsheetFactory {
 
     @Override
     public Formula createFormula(List<FormulaComponent> comps) {
-        throw new UnsupportedOperationException("createFormula() not supported yet.");
+        return new FormulaImpl(comps);
     }
 
     @Override
     public ANumber createNumber(double val) {
-        throw new UnsupportedOperationException("createNumber() not supported yet.");
+        return new ANumberImpl(val);
     }
-
 
 }

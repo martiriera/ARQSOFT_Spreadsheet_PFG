@@ -17,7 +17,7 @@ public interface Visitor {
 
     void visitANumber(ANumber aNumber);
 
-    void visitCellCoordinate(CellCoordinate cellCoordinate); // TODO: Impl correct (others not)?
+    void visitCellCoordinate(CellCoordinate cellCoordinate);
 
     void visitFunction(Function function);
 
