@@ -14,6 +14,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.SyntaxCheckerImpl;
@@ -24,6 +25,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType;
 import java.util.List;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 
 /**
@@ -97,6 +99,16 @@ public class DefaultFactory extends SpreadsheetFactory {
     @Override
     public ANumber createNumber(double val) {
         throw new UnsupportedOperationException("createNumber() not supported yet.");
+    }
+
+    @Override
+    public FormulaEvaluator createFormulaEvaluator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Text createText(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

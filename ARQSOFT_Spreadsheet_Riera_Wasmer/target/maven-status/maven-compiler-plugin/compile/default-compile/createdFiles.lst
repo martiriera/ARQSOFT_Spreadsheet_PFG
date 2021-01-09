@@ -16,7 +16,6 @@ edu\upc\etsetb\arqsoft\spreadsheet\usecases\postfix\UnknownTokenTypeException.cl
 edu\upc\etsetb\arqsoft\spreadsheet\entities\functions\impl\MaxFunction.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\RangeImpl.class
 edu\upc\etsetb\arqsoft\spreadsheet\usecases\postfix\SyntaxException.class
-edu\upc\etsetb\arqsoft\spreadsheet\entities\SpreadsheetController.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\SpreadsheetHashMapImpl.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\CellCoordinate.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\functions\FunctionsRegister.class
@@ -33,6 +32,7 @@ edu\upc\etsetb\arqsoft\spreadsheet\entities\factories\impl\MyFactory.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\formulas\Operand.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\TextImpl.class
 edu\upc\etsetb\arqsoft\spreadsheet\usecases\postfix\TokenType.class
+edu\upc\etsetb\arqsoft\spreadsheet\entities\formulas\FormulaEvaluator.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\BadCoordinateException.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\formulas\Visitor.class
 edu\upc\etsetb\arqsoft\spreadsheet\entities\functions\impl\FunctionImpl.class

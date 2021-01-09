@@ -9,6 +9,22 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-class BadCoordinateException extends Exception {
-    
+public class BadCoordinateException extends Exception {
+
+    /**
+     * Creates a new instance of <code>BadCoordinateException</code> without
+     * detail message.
+     */
+    public BadCoordinateException() {
+    }
+
+    /**
+     * Constructs an instance of <code>BadCoordinateException</code> with the
+     * specified detail message.
+     *
+     * @param msg the detail message.
+     */
+    public BadCoordinateException(String msg) {
+        super(msg);
+    }
 }

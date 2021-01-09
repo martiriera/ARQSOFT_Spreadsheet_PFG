@@ -13,7 +13,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.UnkownFactoryException;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.formulas.evaluator.FormulaEvaluator;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 
 // KEEP THESE IMPORTS (for JUnit 4.12)
 import junit.framework.Assert;
@@ -37,8 +37,8 @@ public class SpreadsheetTest {
         // IMPORTANT: REPLACE WITH A SET OF SENTENCES THAT GENERATE AN 
         // ENVIRONMENT READY FOR SETTING CONTENTS IN CELLS OF THE SPREADSHEET 
         // AND FOR COMPUTING VALUES FOR THESE CONTENTS.
-        this.instance = SpreadsheetHashMapImpl.getInstance();
-        SpreadsheetFactory factory = SpreadsheetFactory.getInstance("DEFAULT");
+        this.instance = new SpreadsheetHashMapImpl();
+        SpreadsheetFactory factory = SpreadsheetFactory.getInstance("MYFACTORY");
         this.instance.setFactory(factory);
         FormulaEvaluator formEvaluator = factory.createFormulaEvaluator();
         formEvaluator.setFactory(factory);

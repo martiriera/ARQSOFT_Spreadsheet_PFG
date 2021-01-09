@@ -14,7 +14,10 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumberImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.TextImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.SyntaxCheckerImpl;
@@ -25,6 +28,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType;
 import java.util.List;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
 
@@ -75,9 +79,10 @@ public class MyFactory extends SpreadsheetFactory {
     }
 
     @Override
-    public CellCoordinate createCellCoordinate(String cellCoord)
-            throws IllegalArgumentException {
-        throw new UnsupportedOperationException("createCellCoordinate() not supported yet.");
+    public CellCoordinate createCellCoordinate(String cellCoord) {
+        // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
+        String[] separateCoordinate = cellCoord.split("(?<=\\D)(?=\\d)");
+        return new CellCoordinateImpl(separateCoordinate[0], Integer.parseInt(separateCoordinate[1]));
     }
 
     @Override
@@ -99,6 +104,16 @@ public class MyFactory extends SpreadsheetFactory {
     @Override
     public ANumber createNumber(double val) {
         return new ANumberImpl(val);
+    }
+
+    @Override
+    public FormulaEvaluator createFormulaEvaluator() {
+        return new FormulaEvaluator();
+    }
+
+    @Override
+    public Text createText(String value) {
+        return new TextImpl(value);
     }
 
 }

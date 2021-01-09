@@ -12,6 +12,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operand;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.impl.MyFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
@@ -22,6 +23,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType;
 import java.util.List;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 
 /**
  * The abstract factory class of the Abstract Factory Design Pattern; you will
@@ -160,6 +162,7 @@ public abstract class SpreadsheetFactory {
 
     public abstract ANumber createNumber(double val);
 
+    public abstract Text createText(String value);
     /**
      * Creates a formula of operands and operators (formula components).
      *
@@ -170,4 +173,5 @@ public abstract class SpreadsheetFactory {
      */
     public abstract Formula createFormula(List<FormulaComponent> comps);
 
+    public abstract FormulaEvaluator createFormulaEvaluator();
 }

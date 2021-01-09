@@ -5,7 +5,17 @@
  */
 package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.impl.MyFactory;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.BadTokenException;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.FormulaException;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxException;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Token;
+import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Tokenizer;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,16 +28,70 @@ import java.util.List;
 public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public HashMap<CellCoordinate, Cell> cellMap;
-    public MyFactory factory;
+    public SpreadsheetFactory factory;
+    public FormulaEvaluator formEvaluator;
+
+    @Override
+    public void setFactory(SpreadsheetFactory factory) {
+        this.factory = factory;
+    }
+
+    @Override
+    public void setFormulaEvaluator(FormulaEvaluator formEvaluator) {
+        this.formEvaluator = formEvaluator;
+    }
 
     @Override
     public void setCellContent(String cellCoord, String content) throws ContentException, BadCoordinateException {
-        // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
-        String[] separateCoordinate = cellCoord.split("(?<=\\D)(?=\\d)");
 
-        CellCoordinateImpl targetCoordinate = new CellCoordinateImpl(separateCoordinate[0], Integer.parseInt(separateCoordinate[1]));
-        Cell targetCell = new Cell(new TextImpl(content));
-        cellMap.put(targetCoordinate, targetCell);
+        if (CellCoordinate.coordinateValidation(cellCoord)){
+            try {
+                Content classifiedContent = classifyContent(content);
+                cellMap.put(factory.createCellCoordinate(cellCoord), new Cell(classifiedContent));
+            } catch (ContentException e) {
+                throw e;
+            }
+        } else {
+            throw new BadCoordinateException("Wrong cellCoordinate format.");
+        }
+    }
+
+    public Content classifyContent(String content) throws ContentException {
+
+        if (content.charAt(0) == '=') {
+
+            String formulaString = content.substring(1);
+
+            Tokenizer tokenizer = factory.createTokenizer();
+            SyntaxChecker syntaxChecker = factory.createSyntaxChecker();
+            PostFixGenerator postfixGenerator = factory.createPostFixGenerator();
+            List<Token> tokenList; //TODO: Inicialitzar
+            try {
+                
+                tokenizer.tokenize(formulaString);
+                //tokenizer.getResult();
+                syntaxChecker.check(formulaString);
+                tokenList = syntaxChecker.getTokens();
+                postfixGenerator.generateFromTokens(tokenList);
+                List<FormulaComponent> formulaComponentList = postfixGenerator.getResultQueue();       
+                Formula formula = factory.createFormula(formulaComponentList);
+                return formula;//TODO: Return formula o result?
+                
+                
+            } catch (BadTokenException | SyntaxException | FormulaException e) {
+                throw new ContentException(e.getMessage());
+            }
+
+        } else {
+            try {
+
+                double value = Double.parseDouble(content);
+                return factory.createNumber(value);
+
+            } catch (NumberFormatException e) {
+                return factory.createText(content);
+            }
+        }
     }
 
     @Override
@@ -49,7 +113,8 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
         for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
             for (int rowIndex = originCellCoord.rowComponenent; rowIndex <= finalCellCoord.rowComponenent; rowIndex++) {
-                CellCoordinateImpl coordinateOfCellToPut = new CellCoordinateImpl(columnsToIterate.get(columnIndex), rowIndex);
+
+                CellCoordinate coordinateOfCellToPut = factory.createCellCoordinate(columnsToIterate.get(columnIndex) + String.valueOf(rowIndex));
                 Cell cellToPut = this.getCell(coordinateOfCellToPut);
                 if (cellToPut != null) {
                     rangeMap.put(coordinateOfCellToPut, cellToPut);
@@ -88,6 +153,11 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         int toIndex = columnArray.indexOf(finalColumn) + 1;
         return (columnArray.subList(fromIndex, toIndex));
 
+    }
+
+    @Override
+    public String getCellContentAsString(String b11) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
