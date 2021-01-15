@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" time="0.097" errors="13" skipped="0">
+<testsuite tests="15" failures="0" name="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" time="0.228" errors="10" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9-18"/>
@@ -57,14 +57,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_2Level2RBs" time="0.037">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.d(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_2Level2RBs(SpreadsheetTest.java:129)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_2Level2RBs" time="0.026"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs" time="0.02">
+    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.VisitorFormulaComponents.visitCellCoordinate(VisitorFormulaComponents.java:49)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl.acceptVisitor(CellCoordinateImpl.java:44)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.EvaluatorPostFix.evaluatePostFix(EvaluatorPostFix.java:30)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator.evaluateFormula(FormulaEvaluator.java:31)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.getCellContentAsDouble(SpreadsheetHashMapImpl.java:167)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs(SpreadsheetTest.java:148)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -99,113 +100,16 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, 2 levels of round brackets
-Identified a formula: 100/(5+(25/5))
+    <system-out>setting cell content to a formula with: numbers, cell references, 1 level of round brackets
+false
+false
+true
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs" time="0.001">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs(SpreadsheetTest.java:147)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, 1 level of round brackets
-Identified a formula: (A5*4)/(A2+A2)
-</system-out>
-  </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs" time="0.008">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs" time="0.012">
+    <error message="Error while trying to build the postfix expression. Details follow. Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs(SpreadsheetTest.java:175)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -241,43 +145,21 @@ Identified a formula: (A5*4)/(A2+A2)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers, cell references)
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5)
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers, cell references)
+false
+false
+true
+true
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs" time="0.005">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.d(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs(SpreadsheetTest.java:138)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs" time="0.049">
+    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.VisitorFormulaComponents.visitCellCoordinate(VisitorFormulaComponents.java:49)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl.acceptVisitor(CellCoordinateImpl.java:44)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.EvaluatorPostFix.evaluatePostFix(EvaluatorPostFix.java:30)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator.evaluateFormula(FormulaEvaluator.java:31)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.getCellContentAsDouble(SpreadsheetHashMapImpl.java:167)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs(SpreadsheetTest.java:139)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -312,42 +194,15 @@ Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references
-Identified a formula: A1*10-5
+    <system-out>setting cell content to a formula with: numbers, cell references
+false
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1" time="0.004">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1" time="0.009">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1(SpreadsheetTest.java:195)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -383,42 +238,14 @@ Identified a formula: A1*10-5
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 1
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;MIN(A13:A20))
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 1
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2" time="0.001">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2" time="0.013">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2(SpreadsheetTest.java:206)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -454,42 +281,14 @@ Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;MIN(A13:A20))
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 2
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;MAX(A13:A20))
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 2
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3" time="0.018">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3" time="0.013">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3(SpreadsheetTest.java:218)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -525,42 +324,14 @@ Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;MAX(A13:A20))
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 3
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;PROMEDIO(A13:A20))
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 3
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4" time="0.003">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4" time="0.011">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4(SpreadsheetTest.java:229)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -596,114 +367,16 @@ Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;PROMEDIO(A13:A20))
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 4
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;PROMEDIO(A13:A20;SUMA(A21;A22);MAX(A23;A24);MIN(A4;A3)))
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges,functions) - case 4
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_1LevelRBs" time="0.003">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.d(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_1LevelRBs(SpreadsheetTest.java:120)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, 1 level of round brackets
-Identified a formula: 20/(5+5)
-</system-out>
-  </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_TextContent" time="0.006"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs" time="0.004">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_1LevelRBs" time="0.02"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_TextContent" time="0.004"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs" time="0.012">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs(SpreadsheetTest.java:165)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -739,43 +412,18 @@ Identified a formula: 20/(5+5)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers)
-Identified a formula: (A5*4)/(A2+A2)+SUMA(1;2;3;4;5)
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers)
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs" time="0.001">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.d(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs(SpreadsheetTest.java:156)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs" time="0.018">
+    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell.getCellContent()&quot; because the return value of &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet.getCell(edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate)&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.VisitorFormulaComponents.visitCellCoordinate(VisitorFormulaComponents.java:49)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl.acceptVisitor(CellCoordinateImpl.java:44)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.EvaluatorPostFix.evaluatePostFix(EvaluatorPostFix.java:30)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator.evaluateFormula(FormulaEvaluator.java:31)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.getCellContentAsDouble(SpreadsheetHashMapImpl.java:167)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs(SpreadsheetTest.java:157)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -810,113 +458,18 @@ Identified a formula: (A5*4)/(A2+A2)+SUMA(1;2;3;4;5)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, 2 levels of round brackets
-Identified a formula: 100/(A5+(A5*A5/5))
+    <system-out>setting cell content to a formula with: numbers, cell references, 2 levels of round brackets
+false
+true
+false
+false
 </system-out>
   </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers" time="0.003">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.d(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers(SpreadsheetTest.java:111)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-</error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers
-Identified a formula: 1+2
-</system-out>
-  </testcase>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs" time="0.003">
-    <error message="Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory.createToken(edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.TokenType, String)&quot; because &quot;this.c&quot; is null
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.f(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.b(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.impl.TokenizerImpl.tokenize(Unknown Source)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:76)
-	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:54)
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers" time="0.011"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs" time="0.01">
+    <error message="Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null" type="edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException">edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException: Error while trying to build the postfix expression. Details follow. Cannot invoke &quot;java.util.ArrayList.add(Object)&quot; because &quot;this.argumentsArrayList&quot; is null
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.classifyContent(SpreadsheetHashMapImpl.java:70)
+	at edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl.setCellContent(SpreadsheetHashMapImpl.java:48)
 	at edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest.testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs(SpreadsheetTest.java:185)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
@@ -952,33 +505,8 @@ Identified a formula: 1+2
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-out>Identified a number: 1
-Identified a number: 2
-Identified a number: 3
-Identified a number: 4
-Identified a number: 5
-Identified a number: 6
-Identified a number: 7
-Identified a number: 8
-Identified a number: 9
-Identified a number: 10
-Identified a number: 11
-Identified a number: 12
-Identified a number: 13
-Identified a number: 14
-Identified a number: 15
-Identified a number: 16
-Identified a number: 17
-Identified a number: 18
-Identified a number: 19
-Identified a number: 20
-Identified a number: 21
-Identified a number: 22
-Identified a number: 23
-Identified a number: 24
-Identified a text: This is a string
-setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges)
-Identified a formula: (A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12)
+    <system-out>setting cell content to a formula with: numbers, cell references, function (arguments: numbers,cell references,ranges)
+false
 </system-out>
   </testcase>
   <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_NumContent" time="0"/>

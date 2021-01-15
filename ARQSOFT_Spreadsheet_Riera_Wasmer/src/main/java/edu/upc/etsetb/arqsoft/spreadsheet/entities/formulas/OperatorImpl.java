@@ -19,23 +19,23 @@ public class OperatorImpl implements Operator {
 
     @Override
     public boolean isAdd() {
-        return operator == "+";
+        return "+".equals(operator);
     }
 
     @Override
     public boolean isSubs() {
-        return operator == "-";
+        return "-".equals(operator);
 
     }
 
     @Override
     public boolean isMult() {
-        return operator == "*";
+        return "*".equals(operator);
     }
 
     @Override
     public boolean isDiv() {
-        return operator == "/";
+        return "/".equals(operator);
     }
 
     @Override

@@ -12,12 +12,16 @@ import java.util.HashMap;
  *
  * @author Víctor Wasmer and Martí Riera
  */
-public class RangeImpl implements Range{
+public class RangeImpl implements Range {
     
     public HashMap<CellCoordinate, Cell> cellRangeMap;
+    public CellCoordinateImpl initialCellCoordinate;
+    public CellCoordinateImpl finalCellCoordinate;
 
-    public RangeImpl(HashMap<CellCoordinate, Cell> cellRangeMap) {
-        this.cellRangeMap = cellRangeMap;
+    public RangeImpl(CellCoordinateImpl initialCellCoord, CellCoordinateImpl finalCellCoord) {
+        this.initialCellCoordinate = initialCellCoord;
+        this.finalCellCoordinate = finalCellCoord;
+        this.cellRangeMap = new HashMap<>();
     }
     
     @Override

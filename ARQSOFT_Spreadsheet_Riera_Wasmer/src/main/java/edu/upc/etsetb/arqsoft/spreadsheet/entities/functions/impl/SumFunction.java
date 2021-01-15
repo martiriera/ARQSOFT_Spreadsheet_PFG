@@ -15,7 +15,7 @@ public class SumFunction extends FunctionImpl {
 
     @Override
     public String getName() {
-        return "SUM";
+        return "SUMA";
     }
 
     public double calculateFunction() {

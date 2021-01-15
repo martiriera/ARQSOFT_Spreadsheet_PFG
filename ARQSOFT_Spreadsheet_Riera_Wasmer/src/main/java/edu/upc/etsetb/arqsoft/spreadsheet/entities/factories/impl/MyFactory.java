@@ -16,6 +16,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumberImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.RangeImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.TextImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
@@ -30,7 +31,14 @@ import java.util.List;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.OperatorImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.AverageFunction;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.FunctionImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.FunctionRegisterImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.MaxFunction;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.MinFunction;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.SumFunction;
 
 /**
  *
@@ -64,18 +72,37 @@ public class MyFactory extends SpreadsheetFactory {
 
     @Override
     public Operator createOperator(String opText) throws IllegalArgumentException {
-        throw new UnsupportedOperationException("createOperator() not supported yet.");
+        OperatorImpl op = new OperatorImpl(opText);
+        System.out.println(op.isAdd());
+        if (op.isAdd() || op.isDiv() || op.isMult() || op.isSubs()) {
+            return op;
+        } else {
+            throw new IllegalArgumentException("Illegal operator");
+        }
     }
 
     @Override
-    public Function createFunction(String funcName)
-            throws IllegalArgumentException {
-        throw new UnsupportedOperationException("createFunction() not supported yet.");
+    public Function createFunction(String funcName) throws IllegalArgumentException {
+        FunctionsRegister fr = this.createFunctionsRegister();
+        if (fr.isRegistered(funcName)) {
+            switch (funcName) {
+                case "SUM":
+                    return new SumFunction();
+                case "AVG":
+                    return new AverageFunction();
+                case "MAX":
+                    return new MaxFunction();
+                default:
+                    return new MinFunction();
+            }
+        } else {
+            throw new IllegalArgumentException("Illegal function (not registered)");
+        }
     }
 
     @Override
     public FunctionsRegister createFunctionsRegister() {
-        throw new UnsupportedOperationException("createFunctionsRegister() not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new FunctionRegisterImpl();
     }
 
     @Override
@@ -88,12 +115,26 @@ public class MyFactory extends SpreadsheetFactory {
     @Override
     public Range createCellsRange(String cCoord1, String cCoord2)
             throws IllegalArgumentException {
-        throw new UnsupportedOperationException("createCellsRange() not supported yet.");
+        if (!CellCoordinate.coordinateValidation(cCoord1)) {
+            throw new IllegalArgumentException("First range coordinate format is incorrect");
+        } else if (!CellCoordinate.coordinateValidation(cCoord2)) {
+            throw new IllegalArgumentException("Second range coordinate format is incorrect");
+        } else {
+            String[] separateCoordinate1 = cCoord1.split("(?<=\\D)(?=\\d)");
+            String[] separateCoordinate2 = cCoord2.split("(?<=\\D)(?=\\d)");
+            CellCoordinateImpl coord1 = new CellCoordinateImpl(separateCoordinate1[0], Integer.parseInt(separateCoordinate1[1]));
+            CellCoordinateImpl coord2 = new CellCoordinateImpl(separateCoordinate2[0], Integer.parseInt(separateCoordinate2[1]));
+            return new RangeImpl(coord1, coord2);
+        }
     }
 
     @Override
     public ANumber createNumber(String value) throws IllegalArgumentException {
-        throw new UnsupportedOperationException("createNumber() not supported yet.");
+        try {
+            return new ANumberImpl(Double.parseDouble(value));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override

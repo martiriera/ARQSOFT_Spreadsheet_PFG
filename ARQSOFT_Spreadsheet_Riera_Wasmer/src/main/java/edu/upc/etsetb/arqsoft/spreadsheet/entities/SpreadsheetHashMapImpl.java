@@ -10,13 +10,8 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaImpl;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.BadTokenException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.FormulaException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxException;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Token;
-import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Tokenizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -63,27 +58,17 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     public Content classifyContent(String content) throws ContentException {
 
         if (content.charAt(0) == '=') {
-
             String formulaString = content.substring(1);
-
-            Tokenizer tokenizer = factory.createTokenizer();
-            SyntaxChecker syntaxChecker = factory.createSyntaxChecker();
             PostFixGenerator postfixGenerator = factory.createPostFixGenerator();
-            List<Token> tokenList; //TODO: Inicialitzar?
+            postfixGenerator.setFactory(factory);
             try {
-                tokenizer.tokenize(formulaString);
-//                tokenizer.getResult(); //TODO: Cal?
-                syntaxChecker.check(formulaString);
-                tokenList = syntaxChecker.getTokens();
-                postfixGenerator.generateFromTokens(tokenList);
+                postfixGenerator.generateFromString(formulaString);
                 List<FormulaComponent> formulaComponentList = postfixGenerator.getResultQueue();
                 Formula formula = factory.createFormula(formulaComponentList);
                 return formula;
-
-            } catch (BadTokenException | SyntaxException | FormulaException e) {
+            } catch (FormulaException e) {
                 throw new ContentException(e.getMessage());
             }
-
         } else {
             try {
                 double value = Double.parseDouble(content);
@@ -100,28 +85,32 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         return cellMap.get(cellCoord);
     }
 
-    public Range getRangeofCells(CellCoordinateImpl originCellCoord, CellCoordinateImpl finalCellCoord) {
+    public HashMap<CellCoordinate, Cell> fillRangeOfCells(RangeImpl rangeMap) {
 
-        HashMap<CellCoordinate, Cell> rangeMap = new HashMap<>();
+        HashMap<CellCoordinate, Cell> outputRangeMap = new HashMap<>();
+        CellCoordinateImpl initialCoordinate = rangeMap.initialCellCoordinate;
+        CellCoordinateImpl finalCoordinate = rangeMap.finalCellCoordinate;
 
-        List<String> columnsToIterate = this.getColumnsList(originCellCoord.columnComponent, finalCellCoord.columnComponent);
+        List<String> columnsToIterate = this.getColumnsList(initialCoordinate.columnComponent, 
+                finalCoordinate.columnComponent);
+        
         int numberOfColumns = columnsToIterate.size();
 //        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
 
         for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
-            for (int rowIndex = originCellCoord.rowComponenent; rowIndex <= finalCellCoord.rowComponenent; rowIndex++) {
+            for (int rowIndex = initialCoordinate.rowComponenent; rowIndex <= finalCoordinate.rowComponenent; rowIndex++) {
 
                 CellCoordinate coordinateOfCellToPut = factory.createCellCoordinate(columnsToIterate.get(columnIndex) + String.valueOf(rowIndex));
                 Cell cellToPut = this.getCell(coordinateOfCellToPut);
                 if (cellToPut != null) {
-                    rangeMap.put(coordinateOfCellToPut, cellToPut);
+                    outputRangeMap.put(coordinateOfCellToPut, cellToPut);
                 } else {
                     // Put to the range the cell already, but with content 0
-                    rangeMap.put(coordinateOfCellToPut, new Cell(new ANumberImpl(0)));
+                    outputRangeMap.put(coordinateOfCellToPut, new Cell(new ANumberImpl(0)));
                 }
             }
         }
-        return new RangeImpl(rangeMap);
+        return outputRangeMap;
 
     }
 
