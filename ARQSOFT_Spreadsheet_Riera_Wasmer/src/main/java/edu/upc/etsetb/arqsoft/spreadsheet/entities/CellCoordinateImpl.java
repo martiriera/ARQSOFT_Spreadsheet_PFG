@@ -21,6 +21,14 @@ public class CellCoordinateImpl implements CellCoordinate {
         this.rowComponenent = rowComponenent;
     }
 
+    public String getColumnComponent() {
+        return columnComponent;
+    }
+
+    public int getRowComponenent() {
+        return rowComponenent;
+    }
+
     @Override
     public double getArgumentValue() {
         throw new UnsupportedOperationException("CellCoordinateImpl getArgumentValue");
@@ -35,7 +43,5 @@ public class CellCoordinateImpl implements CellCoordinate {
     public void acceptVisitor(Visitor visitor) {
         visitor.visitCellCoordinate(this);
     }
-
-
-
+    
 }

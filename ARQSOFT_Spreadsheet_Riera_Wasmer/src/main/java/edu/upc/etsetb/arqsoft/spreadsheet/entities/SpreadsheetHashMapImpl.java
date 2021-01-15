@@ -9,6 +9,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaComponent;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.BadTokenException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.FormulaException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
@@ -16,9 +17,9 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxChecker;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.SyntaxException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Token;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.Tokenizer;
-import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -29,7 +30,11 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     public HashMap<CellCoordinate, Cell> cellMap;
     public SpreadsheetFactory factory;
-    public FormulaEvaluator formEvaluator;
+    public FormulaEvaluator formulaEvaluator;
+
+    public SpreadsheetHashMapImpl() {
+        this.cellMap = new HashMap<>();
+    }
 
     @Override
     public void setFactory(SpreadsheetFactory factory) {
@@ -38,13 +43,12 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     @Override
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator) {
-        this.formEvaluator = formEvaluator;
+        this.formulaEvaluator = formEvaluator;
     }
 
     @Override
     public void setCellContent(String cellCoord, String content) throws ContentException, BadCoordinateException {
-
-        if (CellCoordinate.coordinateValidation(cellCoord)){
+        if (CellCoordinate.coordinateValidation(cellCoord)) { //TODO: This can throw an exception
             try {
                 Content classifiedContent = classifyContent(content);
                 cellMap.put(factory.createCellCoordinate(cellCoord), new Cell(classifiedContent));
@@ -65,26 +69,23 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
             Tokenizer tokenizer = factory.createTokenizer();
             SyntaxChecker syntaxChecker = factory.createSyntaxChecker();
             PostFixGenerator postfixGenerator = factory.createPostFixGenerator();
-            List<Token> tokenList; //TODO: Inicialitzar
+            List<Token> tokenList; //TODO: Inicialitzar?
             try {
-                
                 tokenizer.tokenize(formulaString);
-                //tokenizer.getResult();
+//                tokenizer.getResult(); //TODO: Cal?
                 syntaxChecker.check(formulaString);
                 tokenList = syntaxChecker.getTokens();
                 postfixGenerator.generateFromTokens(tokenList);
-                List<FormulaComponent> formulaComponentList = postfixGenerator.getResultQueue();       
+                List<FormulaComponent> formulaComponentList = postfixGenerator.getResultQueue();
                 Formula formula = factory.createFormula(formulaComponentList);
-                return formula;//TODO: Return formula o result?
-                
-                
+                return formula;
+
             } catch (BadTokenException | SyntaxException | FormulaException e) {
                 throw new ContentException(e.getMessage());
             }
 
         } else {
             try {
-
                 double value = Double.parseDouble(content);
                 return factory.createNumber(value);
 
@@ -95,10 +96,6 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     }
 
     @Override
-    public double getCellContentAsDouble(String b11) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Cell getCell(CellCoordinate cellCoord) {
         return cellMap.get(cellCoord);
     }
@@ -156,8 +153,52 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     }
 
     @Override
-    public String getCellContentAsString(String b11) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getCellContentAsString(String b11) throws BadCoordinateException {
+        if (CellCoordinate.coordinateValidation(b11)) { //TODO: This will return NULL if the cell is not on the map
+            Cell cell = this.getMatchingCell(b11);
+            Content content = cell.getCellContent();
+            if (content instanceof Formula) {
+                return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content));
+            } else {
+                return content.getValueAsString();
+            }
+        } else {
+            throw new BadCoordinateException("Bad coordinate format");
+        }
+    }
+
+    @Override
+    public double getCellContentAsDouble(String b11) throws BadCoordinateException, NoNumberException {
+        if (CellCoordinate.coordinateValidation(b11)) {
+            Cell cell = this.getMatchingCell(b11); //TODO: This will return NULL if the cell is not on the map
+            Content content = cell.getCellContent();
+            if (content instanceof ANumber) {
+                return cell.getCellContent().getValueAsDouble();
+            } else if (content instanceof Formula) {
+                return formulaEvaluator.evaluateFormula((FormulaImpl) content);
+            } else {
+                String stringContent = content.getValueAsString();
+                if (stringContent.isEmpty()) {
+                    return 0.0;
+                } else {
+                    throw new NoNumberException("No number exception");
+                }
+            }
+        } else {
+            throw new BadCoordinateException("Bad coordinate format");
+        }
+    }
+
+    public Cell getMatchingCell(String string) {
+        Iterator it = cellMap.keySet().iterator();
+        while (it.hasNext()) {
+            CellCoordinateImpl cc = (CellCoordinateImpl) it.next();
+            String stringCoord = cc.columnComponent + String.valueOf(cc.rowComponenent);
+            if (string == null ? stringCoord == null : string.equals(stringCoord)) {
+                return cellMap.get(cc);
+            }
+        }
+        return null;
     }
 
 }

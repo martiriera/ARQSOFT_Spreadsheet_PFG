@@ -6,7 +6,6 @@
 package edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas;
 
 import java.util.List;
-import java.util.Stack;
 
 /**
  *

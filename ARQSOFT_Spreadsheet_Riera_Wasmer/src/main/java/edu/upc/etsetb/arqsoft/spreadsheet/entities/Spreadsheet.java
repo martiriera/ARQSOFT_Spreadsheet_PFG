@@ -18,12 +18,14 @@ public interface Spreadsheet {
 
     public void setCellContent(String coordinate, String content) throws ContentException, BadCoordinateException;
 
-    public double getCellContentAsDouble(String b11);
+    public double getCellContentAsDouble(String b11) throws BadCoordinateException, NoNumberException;
+    
+    public String getCellContentAsString(String b11) throws BadCoordinateException;
     
     public void setFactory(SpreadsheetFactory factory);
     
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator);
     
-    public String getCellContentAsString(String b11);
+    
     
 }
