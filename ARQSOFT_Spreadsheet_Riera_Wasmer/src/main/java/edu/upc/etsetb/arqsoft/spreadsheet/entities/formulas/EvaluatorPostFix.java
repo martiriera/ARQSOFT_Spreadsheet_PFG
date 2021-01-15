@@ -25,7 +25,7 @@ public class EvaluatorPostFix {
 
     public double evaluatePostFix(List<FormulaComponent> formulaComponents) {
         VisitorFormulaComponents visitor = new VisitorFormulaComponents(spreadsheet,factory);
-   
+        
         for (FormulaComponent component : formulaComponents) {
             component.acceptVisitor(visitor);
         }

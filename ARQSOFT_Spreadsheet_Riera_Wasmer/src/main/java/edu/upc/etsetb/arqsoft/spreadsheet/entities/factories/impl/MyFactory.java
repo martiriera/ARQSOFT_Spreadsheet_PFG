@@ -73,7 +73,6 @@ public class MyFactory extends SpreadsheetFactory {
     @Override
     public Operator createOperator(String opText) throws IllegalArgumentException {
         OperatorImpl op = new OperatorImpl(opText);
-        System.out.println(op.isAdd());
         if (op.isAdd() || op.isDiv() || op.isMult() || op.isSubs()) {
             return op;
         } else {

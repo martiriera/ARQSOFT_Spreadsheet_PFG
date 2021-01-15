@@ -112,7 +112,6 @@
 //        CellCoordinate cb6 =CellCoordinate.getInstance("B6") ;
 //        b6.addDependent(cb6, new Tuple(cb6,b6));
 //        System.out.println("and no exception is thrown");
-//        
 //    }
 //
 //    /**

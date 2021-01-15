@@ -7,6 +7,7 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
+import java.util.Set;
 
 /**
  *
@@ -26,6 +27,6 @@ public interface Spreadsheet {
     
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator);
     
-    
+    public Set<CellCoordinate> getMapKeys();
     
 }

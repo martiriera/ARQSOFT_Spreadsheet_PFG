@@ -13,12 +13,12 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
  */
 public class CellCoordinateImpl implements CellCoordinate {
 
-    public String columnComponent;
-    public int rowComponenent;
+    private String columnComponent;
+    private int rowComponent;
 
     public CellCoordinateImpl(String columnComponent, int rowComponenent) {
         this.columnComponent = columnComponent;
-        this.rowComponenent = rowComponenent;
+        this.rowComponent = rowComponenent;
     }
 
     public String getColumnComponent() {
@@ -26,7 +26,7 @@ public class CellCoordinateImpl implements CellCoordinate {
     }
 
     public int getRowComponenent() {
-        return rowComponenent;
+        return rowComponent;
     }
 
     @Override
@@ -36,12 +36,31 @@ public class CellCoordinateImpl implements CellCoordinate {
 
     @Override
     public double getFormulaComponentValue() {
-        throw new UnsupportedOperationException("ellCoordinateImpl getFormulaComponentValue");
+        throw new UnsupportedOperationException("CellCoordinateImpl getFormulaComponentValue");
     }
 
     @Override
     public void acceptVisitor(Visitor visitor) {
         visitor.visitCellCoordinate(this);
+    }
+    
+     @Override
+    public int hashCode() {
+        final int prime = 31;
+        return columnComponent.charAt(0) * prime + rowComponent;  
+    }
+ 
+    //Compare only account numbers
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CellCoordinateImpl other = (CellCoordinateImpl) obj;
+        return !(columnComponent != other.columnComponent || other.rowComponent != rowComponent);
     }
     
 }

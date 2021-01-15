@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
  * @author Víctor Wasmer and Martí Riera
  */
 public class SpreadsheetHashMapImpl implements Spreadsheet {
-
     public HashMap<CellCoordinate, Cell> cellMap;
     public SpreadsheetFactory factory;
     public FormulaEvaluator formulaEvaluator;
@@ -37,8 +37,8 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     }
 
     @Override
-    public void setFormulaEvaluator(FormulaEvaluator formEvaluator) {
-        this.formulaEvaluator = formEvaluator;
+    public void setFormulaEvaluator(FormulaEvaluator formulaEvaluator) {
+        this.formulaEvaluator = formulaEvaluator;
     }
 
     @Override
@@ -63,8 +63,8 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
             postfixGenerator.setFactory(factory);
             try {
                 postfixGenerator.generateFromString(formulaString);
-                List<FormulaComponent> formulaComponentList = postfixGenerator.getResultQueue();
-                Formula formula = factory.createFormula(formulaComponentList);
+                List<FormulaComponent> formulaComponentsList = postfixGenerator.getResultQueue();
+                Formula formula = factory.createFormula(formulaComponentsList);
                 return formula;
             } catch (FormulaException e) {
                 throw new ContentException(e.getMessage());
@@ -91,14 +91,14 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         CellCoordinateImpl initialCoordinate = rangeMap.initialCellCoordinate;
         CellCoordinateImpl finalCoordinate = rangeMap.finalCellCoordinate;
 
-        List<String> columnsToIterate = this.getColumnsList(initialCoordinate.columnComponent, 
-                finalCoordinate.columnComponent);
+        List<String> columnsToIterate = this.getColumnsList(initialCoordinate.getColumnComponent(), 
+                finalCoordinate.getColumnComponent());
         
         int numberOfColumns = columnsToIterate.size();
 //        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
 
         for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
-            for (int rowIndex = initialCoordinate.rowComponenent; rowIndex <= finalCoordinate.rowComponenent; rowIndex++) {
+            for (int rowIndex = initialCoordinate.getRowComponenent(); rowIndex <= finalCoordinate.getRowComponenent(); rowIndex++) {
 
                 CellCoordinate coordinateOfCellToPut = factory.createCellCoordinate(columnsToIterate.get(columnIndex) + String.valueOf(rowIndex));
                 Cell cellToPut = this.getCell(coordinateOfCellToPut);
@@ -164,7 +164,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
             if (content instanceof ANumber) {
                 return cell.getCellContent().getValueAsDouble();
             } else if (content instanceof Formula) {
-                return formulaEvaluator.evaluateFormula((FormulaImpl) content);
+                return formulaEvaluator.evaluateFormula((FormulaImpl) content); //TODO: IMPL HERE?
             } else {
                 String stringContent = content.getValueAsString();
                 if (stringContent.isEmpty()) {
@@ -178,16 +178,21 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         }
     }
 
-    public Cell getMatchingCell(String string) {
+    
+    public Cell getMatchingCell(String cellCoord) {
         Iterator it = cellMap.keySet().iterator();
         while (it.hasNext()) {
             CellCoordinateImpl cc = (CellCoordinateImpl) it.next();
-            String stringCoord = cc.columnComponent + String.valueOf(cc.rowComponenent);
-            if (string == null ? stringCoord == null : string.equals(stringCoord)) {
+            String stringCoord = cc.getColumnComponent() + String.valueOf(cc.getRowComponenent());
+            if (cellCoord == null ? stringCoord == null : cellCoord.equals(stringCoord)) {
                 return cellMap.get(cc);
             }
         }
         return null;
+    }
+    
+    public Set<CellCoordinate> getMapKeys(){
+        return this.cellMap.keySet();
     }
 
 }
