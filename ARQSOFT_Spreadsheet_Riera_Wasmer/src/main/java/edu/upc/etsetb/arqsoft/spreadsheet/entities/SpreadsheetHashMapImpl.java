@@ -23,12 +23,13 @@ import java.util.Set;
  * @author Víctor Wasmer and Martí Riera
  */
 public class SpreadsheetHashMapImpl implements Spreadsheet {
+
     public HashMap<CellCoordinate, Cell> cellMap;
     public SpreadsheetFactory factory;
     public FormulaEvaluator formulaEvaluator;
 
     public SpreadsheetHashMapImpl() {
-        this.cellMap = new HashMap<>();
+        this.cellMap = new HashMap<CellCoordinate, Cell>();
     }
 
     @Override
@@ -91,9 +92,9 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         CellCoordinateImpl initialCoordinate = rangeMap.initialCellCoordinate;
         CellCoordinateImpl finalCoordinate = rangeMap.finalCellCoordinate;
 
-        List<String> columnsToIterate = this.getColumnsList(initialCoordinate.getColumnComponent(), 
+        List<String> columnsToIterate = this.getColumnsList(initialCoordinate.getColumnComponent(),
                 finalCoordinate.getColumnComponent());
-        
+
         int numberOfColumns = columnsToIterate.size();
 //        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
 
@@ -143,8 +144,8 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     @Override
     public String getCellContentAsString(String b11) throws BadCoordinateException {
-        if (CellCoordinate.coordinateValidation(b11)) { //TODO: This will return NULL if the cell is not on the map
-            Cell cell = this.getMatchingCell(b11);
+        if (CellCoordinate.coordinateValidation(b11)) { 
+            Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
             Content content = cell.getCellContent();
             if (content instanceof Formula) {
                 return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content));
@@ -159,7 +160,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     @Override
     public double getCellContentAsDouble(String b11) throws BadCoordinateException, NoNumberException {
         if (CellCoordinate.coordinateValidation(b11)) {
-            Cell cell = this.getMatchingCell(b11); //TODO: This will return NULL if the cell is not on the map
+            Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
             Content content = cell.getCellContent();
             if (content instanceof ANumber) {
                 return cell.getCellContent().getValueAsDouble();
@@ -178,7 +179,6 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         }
     }
 
-    
     public Cell getMatchingCell(String cellCoord) {
         Iterator it = cellMap.keySet().iterator();
         while (it.hasNext()) {

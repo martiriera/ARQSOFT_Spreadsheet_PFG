@@ -8,7 +8,9 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.RangeImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
@@ -22,7 +24,11 @@ import java.util.Iterator;
 public abstract class FunctionImpl implements Function {
 
     protected ArrayList<Argument> argumentsArrayList;
-    protected SpreadsheetHashMapImpl spreadsheet;
+    protected Spreadsheet spreadsheet;
+
+    public FunctionImpl() {
+        this.argumentsArrayList = new ArrayList<>();
+    }
 
     @Override
     public void addArgument(Argument arg) {

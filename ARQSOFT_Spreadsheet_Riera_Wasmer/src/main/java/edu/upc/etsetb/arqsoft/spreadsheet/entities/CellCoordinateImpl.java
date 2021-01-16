@@ -44,11 +44,6 @@ public class CellCoordinateImpl implements CellCoordinate {
         visitor.visitCellCoordinate(this);
     }
 
-    @Override
-    public int hashCode() {
-        return 31 * this.columnHashCode() + this.rowHashCode();
-    }
-
     public int columnHashCode() {
         int hash = 0;
         hash += (columnComponent != null ? columnComponent.hashCode() : 0);
@@ -60,6 +55,11 @@ public class CellCoordinateImpl implements CellCoordinate {
         int result = 1;
         result = prime * result + rowComponent;
         return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * this.columnHashCode() + this.rowHashCode();
     }
 
     @Override

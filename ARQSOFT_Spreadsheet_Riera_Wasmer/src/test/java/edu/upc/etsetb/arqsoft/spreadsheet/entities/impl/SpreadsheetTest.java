@@ -91,26 +91,7 @@ public class SpreadsheetTest {
     @After
     public void tearDown() {
     }
-//    
-      @Test
-      public void testCellCreation() throws Exception {
-          
-          HashMap<CellCoordinate, String> map = new HashMap<>();
-          
-          CellCoordinate cc1 = new CellCoordinateImpl("Z", 7);
-          CellCoordinate cc2 = new CellCoordinateImpl("Z", 7);
-          
-          map.put(cc1, "CONTENT");
-          
-          System.out.println(map.get(cc2));
-      }
-    
-//      @Test
-//      public void testCellCreation2() throws Exception {    
-//          CellCoordinate cc1 = new CellCoordinateImpl("A", 1);
-//          System.out.println(this.instance.getCell(cc1));
-//      }
-    
+   
 //    @Test
 //    public void testSetCellContent_TextContent() throws Exception {
 //        System.out.println("setting cell content to a text");
@@ -161,7 +142,7 @@ public class SpreadsheetTest {
 //        double content = this.instance.getCellContentAsDouble("B4");
 //        Assert.assertEquals(5.0, content, 0.0);
 //    }
-
+//
 //    @Test
 //    public void testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs() throws Exception {
 //        System.out.println("setting cell content to a formula with: numbers, "
@@ -188,16 +169,17 @@ public class SpreadsheetTest {
 //        double content = this.instance.getCellContentAsDouble("B7");
 //        Assert.assertEquals(20.0, content, 0.0);
 //    }
+    
 //
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers, cell "
-//                + "references)");
-//        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5)");
-//        double content = this.instance.getCellContentAsDouble("B8");
-//        Assert.assertEquals(20.0, content, 0.0);
-//    }
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers, cell "
+                + "references)");
+        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5)");
+        double content = this.instance.getCellContentAsDouble("B8");
+        Assert.assertEquals(20.0, content, 0.0);
+    }
 //
 //    @Test
 //    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs() throws Exception {

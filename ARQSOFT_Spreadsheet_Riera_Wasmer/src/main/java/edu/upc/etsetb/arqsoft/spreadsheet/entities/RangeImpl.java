@@ -21,7 +21,7 @@ public class RangeImpl implements Range {
     public RangeImpl(CellCoordinateImpl initialCellCoord, CellCoordinateImpl finalCellCoord) {
         this.initialCellCoordinate = initialCellCoord;
         this.finalCellCoordinate = finalCellCoord;
-        this.cellRangeMap = new HashMap<>();
+        this.cellRangeMap = new HashMap<>(); //TODO: Fill the range WE NEED THE SPREADSHEET!
     }
     
     @Override

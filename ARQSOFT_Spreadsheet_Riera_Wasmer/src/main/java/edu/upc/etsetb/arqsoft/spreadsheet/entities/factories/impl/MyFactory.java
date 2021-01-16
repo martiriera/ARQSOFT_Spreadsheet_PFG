@@ -85,7 +85,7 @@ public class MyFactory extends SpreadsheetFactory {
         FunctionsRegister fr = this.createFunctionsRegister();
         if (fr.isRegistered(funcName)) {
             switch (funcName) {
-                case "SUM":
+                case "SUMA":
                     return new SumFunction();
                 case "AVG":
                     return new AverageFunction();

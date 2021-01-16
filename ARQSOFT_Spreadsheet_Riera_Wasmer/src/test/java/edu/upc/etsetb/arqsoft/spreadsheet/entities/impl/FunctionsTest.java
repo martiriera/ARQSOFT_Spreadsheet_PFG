@@ -46,6 +46,7 @@ public class FunctionsTest {
         FormulaEvaluator formEvaluator = factory.createFormulaEvaluator();
         formEvaluator.setFactory(factory);
         formEvaluator.setSheet(instance);
+        FunctionImpl funim = new FunctionImpl();
         this.instance.setFormulaEvaluator(formEvaluator);
 
         //IMPORTANT: KEEP THE SENTENCES BELOW.

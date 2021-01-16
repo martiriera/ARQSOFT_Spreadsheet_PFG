@@ -28,7 +28,7 @@ public class SumFunction extends FunctionImpl {
 
     // TODO: Review gets
     @Override
-    public double getArgumentValue() { 
+    public double getArgumentValue() {
         return this.calculateFunction();
     }
 
