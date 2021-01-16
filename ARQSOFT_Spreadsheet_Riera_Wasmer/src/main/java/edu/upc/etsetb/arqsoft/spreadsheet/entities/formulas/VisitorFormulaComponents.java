@@ -47,12 +47,6 @@ public class VisitorFormulaComponents implements Visitor {
     @Override
     public void visitCellCoordinate(CellCoordinate cellCoordinate) {
         //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell)
-        Iterator it = spreadsheet.getMapKeys().iterator();
-        while(it.hasNext()){
-            System.out.println("Provided coord " + cellCoordinate);
-            System.out.println("Map coord " + it.next());
-            System.out.println(cellCoordinate.equals(((CellCoordinate) it.next())));
-        }
         double cellContentDoubleValue = spreadsheet.getCell(cellCoordinate).getCellContent().getValueAsDouble();
         stack.push(factory.createNumber(cellContentDoubleValue));
     }

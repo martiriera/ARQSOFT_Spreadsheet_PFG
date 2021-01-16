@@ -47,7 +47,7 @@ public class SpreadsheetTest {
         formEvaluator.setFactory(factory);
         formEvaluator.setSheet(instance);
         this.instance.setFormulaEvaluator(formEvaluator);
-        //TODO: Check instance
+
         //IMPORTANT: KEEP THE SENTENCES BELOW.
         instance.setCellContent("A1", "1");
         instance.setCellContent("A2", "2");
@@ -92,24 +92,24 @@ public class SpreadsheetTest {
     public void tearDown() {
     }
 //    
-//      @Test
-//      public void testCellCreation() throws Exception {
-//          
-//          HashMap<CellCoordinate, String> map = new HashMap<>();
-//          
-//          CellCoordinate cc1 = new CellCoordinateImpl("Z", 7);
-//          CellCoordinate cc2 = new CellCoordinateImpl("Z", 7);
-//          
-//          map.put(cc1, "CONTENT");
-//          
-//          System.out.println(map.get(cc2));
-//      }
-    
       @Test
-      public void testCellCreation2() throws Exception {    
-          CellCoordinate cc1 = new CellCoordinateImpl("A", 1);
-          System.out.println(this.instance.getCell(cc1));
+      public void testCellCreation() throws Exception {
+          
+          HashMap<CellCoordinate, String> map = new HashMap<>();
+          
+          CellCoordinate cc1 = new CellCoordinateImpl("Z", 7);
+          CellCoordinate cc2 = new CellCoordinateImpl("Z", 7);
+          
+          map.put(cc1, "CONTENT");
+          
+          System.out.println(map.get(cc2));
       }
+    
+//      @Test
+//      public void testCellCreation2() throws Exception {    
+//          CellCoordinate cc1 = new CellCoordinateImpl("A", 1);
+//          System.out.println(this.instance.getCell(cc1));
+//      }
     
 //    @Test
 //    public void testSetCellContent_TextContent() throws Exception {

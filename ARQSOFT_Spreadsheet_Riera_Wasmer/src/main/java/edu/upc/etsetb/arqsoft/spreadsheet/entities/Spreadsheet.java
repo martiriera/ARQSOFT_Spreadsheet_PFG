@@ -7,6 +7,7 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -20,13 +21,11 @@ public interface Spreadsheet {
     public void setCellContent(String coordinate, String content) throws ContentException, BadCoordinateException;
 
     public double getCellContentAsDouble(String b11) throws BadCoordinateException, NoNumberException;
-    
+
     public String getCellContentAsString(String b11) throws BadCoordinateException;
-    
+
     public void setFactory(SpreadsheetFactory factory);
-    
+
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator);
-    
-    public Set<CellCoordinate> getMapKeys();
-    
+
 }

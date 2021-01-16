@@ -190,9 +190,5 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         }
         return null;
     }
-    
-    public Set<CellCoordinate> getMapKeys(){
-        return this.cellMap.keySet();
-    }
 
 }
