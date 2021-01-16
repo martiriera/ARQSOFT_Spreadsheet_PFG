@@ -33,11 +33,11 @@ public class MaxFunction extends FunctionImpl {
     }
 
     public double calculateFunction() {
-        Iterator<Argument> it = replaceCoordinatesByCells(argumentsArrayList).iterator();
-        double maxValue = it.next().getArgumentValue();
-        while (it.hasNext()) {
-            if (it.next().getArgumentValue() > maxValue) {
-                maxValue = it.next().getArgumentValue();
+        ArrayList<Argument> replacedArgs = replaceCoordinatesByCells(argumentsArrayList);
+        double maxValue = replacedArgs.get(0).getArgumentValue();
+        for (Argument argument : replacedArgs) {
+            if (argument.getArgumentValue() > maxValue) {
+                maxValue = argument.getArgumentValue();
             }
         }
         return maxValue;
@@ -52,7 +52,7 @@ public class MaxFunction extends FunctionImpl {
     public double getFormulaComponentValue() {
         return this.calculateFunction();
     }
-    
+
     public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
         ArrayList<Argument> outputArgs = new ArrayList<Argument>();
         for (Argument argument : args) {
@@ -61,7 +61,6 @@ public class MaxFunction extends FunctionImpl {
             } else if (argument instanceof RangeImpl) {
                 HashMap<CellCoordinate, Cell> rangeMap = spreadsheet.fillRangeOfCells((RangeImpl) argument);
                 Iterator it = rangeMap.values().iterator();
-                System.out.println(rangeMap.size());
                 while (it.hasNext()) {
                     outputArgs.add((Cell) it.next());
                 }
@@ -69,7 +68,6 @@ public class MaxFunction extends FunctionImpl {
                 outputArgs.add(argument);
             }
         }
-        System.out.println(outputArgs.size());
         return outputArgs;
     }
 

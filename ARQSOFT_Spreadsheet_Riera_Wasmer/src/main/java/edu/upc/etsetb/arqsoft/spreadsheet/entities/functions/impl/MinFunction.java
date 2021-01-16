@@ -33,12 +33,12 @@ public class MinFunction extends FunctionImpl {
     }
 
     public double calculateFunction() {
-        Iterator<Argument> it = replaceCoordinatesByCells(argumentsArrayList).iterator();
-        double minValue = it.next().getArgumentValue();
-        while (it.hasNext()) {
-            if (it.next().getArgumentValue() < minValue) {
-                minValue = it.next().getArgumentValue();
-            }
+        ArrayList<Argument> replacedArgs = replaceCoordinatesByCells(argumentsArrayList);
+        double minValue = replacedArgs.get(0).getArgumentValue();
+        for(Argument argument : replacedArgs){
+           if(argument.getArgumentValue() < minValue){
+               minValue = argument.getArgumentValue();
+           }
         }
         return minValue;
     }
@@ -61,7 +61,6 @@ public class MinFunction extends FunctionImpl {
             } else if (argument instanceof RangeImpl) {
                 HashMap<CellCoordinate, Cell> rangeMap = spreadsheet.fillRangeOfCells((RangeImpl) argument);
                 Iterator it = rangeMap.values().iterator();
-                System.out.println(rangeMap.size());
                 while (it.hasNext()) {
                     outputArgs.add((Cell) it.next());
                 }
@@ -69,7 +68,6 @@ public class MinFunction extends FunctionImpl {
                 outputArgs.add(argument);
             }
         }
-        System.out.println(outputArgs.size());
         return outputArgs;
     }
 

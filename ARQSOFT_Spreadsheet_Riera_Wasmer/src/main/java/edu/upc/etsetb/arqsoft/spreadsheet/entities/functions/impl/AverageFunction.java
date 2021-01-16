@@ -34,10 +34,11 @@ public class AverageFunction extends FunctionImpl {
 
     public double calculateFunction() {
         double average = 0;
-        for (Argument argument : replaceCoordinatesByCells(argumentsArrayList)) {
+        ArrayList<Argument> replacedArgs = replaceCoordinatesByCells(argumentsArrayList);
+        for (Argument argument : replacedArgs) {
             average = average + argument.getArgumentValue();
         }
-        average = average / argumentsArrayList.size();
+        average = average / replacedArgs.size();
 
         return average;
     }
@@ -51,7 +52,7 @@ public class AverageFunction extends FunctionImpl {
     public double getFormulaComponentValue() {
         return this.calculateFunction();
     }
-    
+
     public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
         ArrayList<Argument> outputArgs = new ArrayList<Argument>();
         for (Argument argument : args) {
@@ -60,7 +61,6 @@ public class AverageFunction extends FunctionImpl {
             } else if (argument instanceof RangeImpl) {
                 HashMap<CellCoordinate, Cell> rangeMap = spreadsheet.fillRangeOfCells((RangeImpl) argument);
                 Iterator it = rangeMap.values().iterator();
-                System.out.println(rangeMap.size());
                 while (it.hasNext()) {
                     outputArgs.add((Cell) it.next());
                 }
@@ -68,7 +68,6 @@ public class AverageFunction extends FunctionImpl {
                 outputArgs.add(argument);
             }
         }
-        System.out.println(outputArgs.size());
         return outputArgs;
     }
 

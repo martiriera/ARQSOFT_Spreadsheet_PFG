@@ -92,105 +92,105 @@ public class SpreadsheetTest {
     public void tearDown() {
     }
    
-//    @Test
-//    public void testSetCellContent_TextContent() throws Exception {
-//        System.out.println("setting cell content to a text");
-//        String content = this.instance.getCellContentAsString("C1");
-//        Assert.assertEquals("This is a string", content);
-//    }
-//    /**
-//     * Test of setCellContent method, of class SpreadsheetImpl.
-//     */
-//    @Test
-//    public void testSetCellContent_NumContent() throws Exception {
-//        System.out.println("setting cell content to a number");
-//        double content = this.instance.getCellContentAsDouble("A24");
-//        Assert.assertEquals(24.0, content, 0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers");
-//        this.instance.setCellContent("B1", "=1+2");
-//        double content = this.instance.getCellContentAsDouble("B1");
-//        Assert.assertEquals(3.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_1LevelRBs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "1 level of round brackets");
-//        this.instance.setCellContent("B2", "=20/(5+5)");
-//        double content = this.instance.getCellContentAsDouble("B2");
-//        Assert.assertEquals(2.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_2Level2RBs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "2 levels of round brackets");
-//        this.instance.setCellContent("B3", "=100/(5+(25/5))");
-//        double content = this.instance.getCellContentAsDouble("B3");
-//        Assert.assertEquals(10.0, content, 0.0);
-//    }
+    @Test
+    public void testSetCellContent_TextContent() throws Exception {
+        System.out.println("setting cell content to a text");
+        String content = this.instance.getCellContentAsString("C1");
+        Assert.assertEquals("This is a string", content);
+    }
+    /**
+     * Test of setCellContent method, of class SpreadsheetImpl.
+     */
+    @Test
+    public void testSetCellContent_NumContent() throws Exception {
+        System.out.println("setting cell content to a number");
+        double content = this.instance.getCellContentAsDouble("A24");
+        Assert.assertEquals(24.0, content, 0);
+    }
 
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references");
-//        this.instance.setCellContent("B4", "=A1*10-5");
-//        double content = this.instance.getCellContentAsDouble("B4");
-//        Assert.assertEquals(5.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, 1 level of round brackets");
-//        this.instance.setCellContent("B5", "=(A5*4)/(A2+A2)");
-//        double content = this.instance.getCellContentAsDouble("B5");
-//        Assert.assertEquals(5.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, 2 levels of round brackets");
-//        this.instance.setCellContent("B6", "=100/(A5+(A5*A5/5))");
-//        double content = this.instance.getCellContentAsDouble("B6");
-//        Assert.assertEquals(10.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers)");
-//        this.instance.setCellContent("B7", "=(A5*4)/(A2+A2)+SUM(1;2;3;4;5)");
-//        double content = this.instance.getCellContentAsDouble("B7");
-//        Assert.assertEquals(20.0, content, 0.0);
-//    }
+    @Test
+    public void testSetCellContent_Formula_Numbers() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers");
+        this.instance.setCellContent("B1", "=1+2");
+        double content = this.instance.getCellContentAsDouble("B1");
+        Assert.assertEquals(3.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_1LevelRBs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "1 level of round brackets");
+        this.instance.setCellContent("B2", "=20/(5+5)");
+        double content = this.instance.getCellContentAsDouble("B2");
+        Assert.assertEquals(2.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_2Level2RBs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "2 levels of round brackets");
+        this.instance.setCellContent("B3", "=100/(5+(25/5))");
+        double content = this.instance.getCellContentAsDouble("B3");
+        Assert.assertEquals(10.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references");
+        this.instance.setCellContent("B4", "=A1*10-5");
+        double content = this.instance.getCellContentAsDouble("B4");
+        Assert.assertEquals(5.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, 1 level of round brackets");
+        this.instance.setCellContent("B5", "=(A5*4)/(A2+A2)");
+        double content = this.instance.getCellContentAsDouble("B5");
+        Assert.assertEquals(5.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, 2 levels of round brackets");
+        this.instance.setCellContent("B6", "=100/(A5+(A5*A5/5))");
+        double content = this.instance.getCellContentAsDouble("B6");
+        Assert.assertEquals(10.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers)");
+        this.instance.setCellContent("B7", "=(A5*4)/(A2+A2)+SUM(1;2;3;4;5)");
+        double content = this.instance.getCellContentAsDouble("B7");
+        Assert.assertEquals(20.0, content, 0.0);
+    }
     
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers, cell "
-//                + "references)");
-//        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5)");
-//        double content = this.instance.getCellContentAsDouble("B8");
-//        Assert.assertEquals(20.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers,cell "
-//                + "references,ranges)");
-//        this.instance.setCellContent("B9", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;A6:A12)");
-//        double content = this.instance.getCellContentAsDouble("B9");
-//        Assert.assertEquals(83.0, content, 0.0);
-//    }
-//
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers, cell "
+                + "references)");
+        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5)");
+        double content = this.instance.getCellContentAsDouble("B8");
+        Assert.assertEquals(20.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers,cell "
+                + "references,ranges)");
+        this.instance.setCellContent("B9", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;A6:A12)");
+        double content = this.instance.getCellContentAsDouble("B9");
+        Assert.assertEquals(83.0, content, 0.0);
+    }
+
     @Test
     public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1() throws Exception {
         System.out.println("setting cell content to a formula with: numbers, "
