@@ -47,7 +47,7 @@ public class SpreadsheetTest {
         formEvaluator.setFactory(factory);
         formEvaluator.setSheet(instance);
         this.instance.setFormulaEvaluator(formEvaluator);
-
+        //TODO: Check instance
         //IMPORTANT: KEEP THE SENTENCES BELOW.
         instance.setCellContent("A1", "1");
         instance.setCellContent("A2", "2");
