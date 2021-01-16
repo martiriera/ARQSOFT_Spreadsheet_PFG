@@ -42,12 +42,12 @@ public class SpreadsheetTest {
         // AND FOR COMPUTING VALUES FOR THESE CONTENTS.
         this.instance = new SpreadsheetHashMapImpl();
         SpreadsheetFactory factory = SpreadsheetFactory.getInstance("MYFACTORY");
+        factory.setSpreadsheet(this.instance);
         this.instance.setFactory(factory);
         FormulaEvaluator formEvaluator = factory.createFormulaEvaluator();
         formEvaluator.setFactory(factory);
         formEvaluator.setSheet(instance);
         this.instance.setFormulaEvaluator(formEvaluator);
-
         //IMPORTANT: KEEP THE SENTENCES BELOW.
         instance.setCellContent("A1", "1");
         instance.setCellContent("A2", "2");
@@ -165,75 +165,75 @@ public class SpreadsheetTest {
 //    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs() throws Exception {
 //        System.out.println("setting cell content to a formula with: numbers, "
 //                + "cell references, function (arguments: numbers)");
-//        this.instance.setCellContent("B7", "=(A5*4)/(A2+A2)+SUMA(1;2;3;4;5)");
+//        this.instance.setCellContent("B7", "=(A5*4)/(A2+A2)+SUM(1;2;3;4;5)");
 //        double content = this.instance.getCellContentAsDouble("B7");
 //        Assert.assertEquals(20.0, content, 0.0);
 //    }
     
 //
-    @Test
-    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
-        System.out.println("setting cell content to a formula with: numbers, "
-                + "cell references, function (arguments: numbers, cell "
-                + "references)");
-        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5)");
-        double content = this.instance.getCellContentAsDouble("B8");
-        Assert.assertEquals(20.0, content, 0.0);
-    }
+//    @Test
+//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs() throws Exception {
+//        System.out.println("setting cell content to a formula with: numbers, "
+//                + "cell references, function (arguments: numbers, cell "
+//                + "references)");
+//        this.instance.setCellContent("B8", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5)");
+//        double content = this.instance.getCellContentAsDouble("B8");
+//        Assert.assertEquals(20.0, content, 0.0);
+//    }
 //
 //    @Test
 //    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs() throws Exception {
 //        System.out.println("setting cell content to a formula with: numbers, "
 //                + "cell references, function (arguments: numbers,cell "
 //                + "references,ranges)");
-//        this.instance.setCellContent("B9", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12)");
+//        this.instance.setCellContent("B9", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;A6:A12)");
 //        double content = this.instance.getCellContentAsDouble("B9");
 //        Assert.assertEquals(83.0, content, 0.0);
 //    }
 //
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers,cell "
-//                + "references,ranges,functions) - case 1");
-//        this.instance.setCellContent("B10", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;A6:A12;MIN(A13:A20))"
-//                + "");
-//        double content = this.instance.getCellContentAsDouble("B10");
-//        Assert.assertEquals(96.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers,cell "
-//                + "references,ranges,functions) - case 2");
-//        this.instance.setCellContent("B11", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;"
-//                + "A6:A12;MAX(A13:A20))"
-//                + "");
-//        double content = this.instance.getCellContentAsDouble("B11");
-//        Assert.assertEquals(103.0, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers,cell "
-//                + "references,ranges,functions) - case 3");
-//        this.instance.setCellContent("B12", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;"
-//                + "A6:A12;PROMEDIO(A13:A20))");
-//        double content = this.instance.getCellContentAsDouble("B12");
-//        Assert.assertEquals(99.5, content, 0.0);
-//    }
-//
-//    @Test
-//    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4() throws Exception {
-//        System.out.println("setting cell content to a formula with: numbers, "
-//                + "cell references, function (arguments: numbers,cell "
-//                + "references,ranges,functions) - case 4");
-//        this.instance.setCellContent("B13", "=(A5*4)/(A2+A2)+SUMA(A1;A2;3;4;5;"
-//                + "A6:A12;PROMEDIO(A13:A20;SUMA(A21;A22);MAX(A23;A24);MIN(A4;A3)))");
-//        double content = this.instance.getCellContentAsDouble("B13");
-//        Assert.assertEquals(101.363636, content, 0.0001);
-//    }
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers,cell "
+                + "references,ranges,functions) - case 1");
+        this.instance.setCellContent("B10", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;A6:A12;MIN(A13:A20))"
+                + "");
+        double content = this.instance.getCellContentAsDouble("B10");
+        Assert.assertEquals(96.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers,cell "
+                + "references,ranges,functions) - case 2");
+        this.instance.setCellContent("B11", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;"
+                + "A6:A12;MAX(A13:A20))"
+                + "");
+        double content = this.instance.getCellContentAsDouble("B11");
+        Assert.assertEquals(103.0, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers,cell "
+                + "references,ranges,functions) - case 3");
+        this.instance.setCellContent("B12", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;"
+                + "A6:A12;AVG(A13:A20))");
+        double content = this.instance.getCellContentAsDouble("B12");
+        Assert.assertEquals(99.5, content, 0.0);
+    }
+
+    @Test
+    public void testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4() throws Exception {
+        System.out.println("setting cell content to a formula with: numbers, "
+                + "cell references, function (arguments: numbers,cell "
+                + "references,ranges,functions) - case 4");
+        this.instance.setCellContent("B13", "=(A5*4)/(A2+A2)+SUM(A1;A2;3;4;5;"
+                + "A6:A12;AVG(A13:A20;SUM(A21;A22);MAX(A23;A24);MIN(A4;A3)))");
+        double content = this.instance.getCellContentAsDouble("B13");
+        Assert.assertEquals(101.363636, content, 0.0001);
+    }
 
 }

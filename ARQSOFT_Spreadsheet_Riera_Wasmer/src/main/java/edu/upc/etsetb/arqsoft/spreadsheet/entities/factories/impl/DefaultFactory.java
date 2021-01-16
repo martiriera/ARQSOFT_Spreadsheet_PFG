@@ -14,6 +14,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ANumber;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
@@ -108,6 +109,11 @@ public class DefaultFactory extends SpreadsheetFactory {
 
     @Override
     public Text createText(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setSpreadsheet(Spreadsheet spreadsheet) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

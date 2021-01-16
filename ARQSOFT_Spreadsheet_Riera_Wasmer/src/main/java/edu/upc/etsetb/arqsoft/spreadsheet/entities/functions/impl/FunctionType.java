@@ -10,5 +10,5 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl;
  * @author Víctor Wasmer and Martí Riera
  */
 public enum FunctionType {
-    SUMA, AVG, MAX, MIN
+    SUM, AVG, MAX, MIN
 }

@@ -12,6 +12,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operand;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Operator;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.impl.MyFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
@@ -45,6 +46,8 @@ public abstract class SpreadsheetFactory {
             throw new UnkownFactoryException("Unknown factory code \'" + which + "\'.");
         }
     }
+    
+    public abstract void setSpreadsheet(Spreadsheet spreadsheet);
     /**
     SpreadsheetFactory factory = SpreadsheetFactory.getInstance("MYFACTORY");
      */

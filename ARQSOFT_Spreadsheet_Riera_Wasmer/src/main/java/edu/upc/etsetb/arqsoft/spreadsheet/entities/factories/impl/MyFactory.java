@@ -17,6 +17,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Range;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.RangeImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Text;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.TextImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
@@ -45,7 +46,14 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.impl.SumFunction;
  * @author JuanCarlos
  */
 public class MyFactory extends SpreadsheetFactory {
+    
+    Spreadsheet spreadsheet;
 
+    @Override
+    public void setSpreadsheet(Spreadsheet spreadsheet) {
+        this.spreadsheet = spreadsheet;
+    }
+    
     @Override
     public Token createToken(TokenType tokenType, String tokenText) throws UnknownTokenTypeException {
         if (!(tokenType instanceof TokenType)) {
@@ -85,14 +93,14 @@ public class MyFactory extends SpreadsheetFactory {
         FunctionsRegister fr = this.createFunctionsRegister();
         if (fr.isRegistered(funcName)) {
             switch (funcName) {
-                case "SUMA":
-                    return new SumFunction();
+                case "SUM":
+                    return new SumFunction(spreadsheet);
                 case "AVG":
-                    return new AverageFunction();
+                    return new AverageFunction(spreadsheet);
                 case "MAX":
-                    return new MaxFunction();
+                    return new MaxFunction(spreadsheet);
                 default:
-                    return new MinFunction();
+                    return new MinFunction(spreadsheet);
             }
         } else {
             throw new IllegalArgumentException("Illegal function (not registered)");

@@ -179,16 +179,16 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         }
     }
 
-    public Cell getMatchingCell(String cellCoord) {
-        Iterator it = cellMap.keySet().iterator();
-        while (it.hasNext()) {
-            CellCoordinateImpl cc = (CellCoordinateImpl) it.next();
-            String stringCoord = cc.getColumnComponent() + String.valueOf(cc.getRowComponenent());
-            if (cellCoord == null ? stringCoord == null : cellCoord.equals(stringCoord)) {
-                return cellMap.get(cc);
-            }
-        }
-        return null;
-    }
+//    public Cell getMatchingCell(String cellCoord) {
+//        Iterator it = cellMap.keySet().iterator();
+//        while (it.hasNext()) {
+//            CellCoordinateImpl cc = (CellCoordinateImpl) it.next();
+//            String stringCoord = cc.getColumnComponent() + String.valueOf(cc.getRowComponenent());
+//            if (cellCoord == null ? stringCoord == null : cellCoord.equals(stringCoord)) {
+//                return cellMap.get(cc);
+//            }
+//        }
+//        return null;
+//    }
 
 }

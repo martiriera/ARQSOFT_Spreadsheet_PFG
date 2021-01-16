@@ -9,8 +9,6 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.RangeImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Visitor;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
@@ -24,7 +22,7 @@ import java.util.Iterator;
 public abstract class FunctionImpl implements Function {
 
     protected ArrayList<Argument> argumentsArrayList;
-    protected Spreadsheet spreadsheet;
+//    protected Spreadsheet spreadsheet;
 
     public FunctionImpl() {
         this.argumentsArrayList = new ArrayList<>();
@@ -42,17 +40,17 @@ public abstract class FunctionImpl implements Function {
     
     //TODO: Validate this substitution
     //TODO: Cal que els args segueixin amb al matiex ordre que tal com arriben?
-    public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
-        for (Argument argument : args) {
-            if (argument instanceof CellCoordinateImpl) {
-                args.set(args.indexOf(argument), spreadsheet.getCell((CellCoordinateImpl) argument));
-            }else if(argument instanceof RangeImpl){
-                Iterator it = ((RangeImpl) argument).cellRangeMap.values().iterator();
-                while(it.hasNext()){
-                    args.add((Cell) it.next());
-                }
-            }
-        }
-        return args;
-    }
+//    public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
+//        for (Argument argument : args) {
+//            if (argument instanceof CellCoordinateImpl) {
+//                args.set(args.indexOf(argument), spreadsheet.getCell((CellCoordinateImpl) argument));
+//            }else if(argument instanceof RangeImpl){
+//                Iterator it = ((RangeImpl) argument).cellRangeMap.values().iterator();
+//                while(it.hasNext()){
+//                    args.add((Cell) it.next());
+//                }
+//            }
+//        }
+//        return args;
+//    }
 }
