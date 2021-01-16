@@ -43,24 +43,40 @@ public class CellCoordinateImpl implements CellCoordinate {
     public void acceptVisitor(Visitor visitor) {
         visitor.visitCellCoordinate(this);
     }
-    
-     @Override
-    public int hashCode() {
-        final int prime = 31;
-        return columnComponent.charAt(0) * prime + rowComponent;  
-    }
- 
-    //Compare only account numbers
+
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        CellCoordinateImpl other = (CellCoordinateImpl) obj;
-        return !(columnComponent != other.columnComponent || other.rowComponent != rowComponent);
+    public int hashCode() {
+        return 31 * this.columnHashCode() + this.rowHashCode();
     }
-    
+
+    public int columnHashCode() {
+        int hash = 0;
+        hash += (columnComponent != null ? columnComponent.hashCode() : 0);
+        return hash;
+    }
+
+    public int rowHashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + rowComponent;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (!(object instanceof CellCoordinate)) {
+            return false;
+        }
+        CellCoordinateImpl other = (CellCoordinateImpl) object;
+        if ((this.columnComponent == null || other.columnComponent == null)
+                || (!this.columnComponent.equals(other.columnComponent))) {
+            return false;
+        }
+        if (this.rowComponent != other.rowComponent) {
+            return false;
+        }
+        return true;
+    }
+
 }
