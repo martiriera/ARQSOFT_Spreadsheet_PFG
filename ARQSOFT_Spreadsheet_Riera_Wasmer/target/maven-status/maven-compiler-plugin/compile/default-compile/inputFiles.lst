@@ -1,3 +1,4 @@
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/entities/parser/Parser.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/Text.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/PostFixGenerator.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/FormulaException.java
@@ -27,6 +28,7 @@
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/Tokenizer.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/factories/UnkownFactoryException.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/FormulaEvaluator.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/entities/parser/ParserS2V.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/Content.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/CellCoordinate.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/UnknownOperatorException.java

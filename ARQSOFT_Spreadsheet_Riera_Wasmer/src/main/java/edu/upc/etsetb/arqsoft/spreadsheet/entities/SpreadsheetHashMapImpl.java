@@ -122,7 +122,6 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 //            initialColumn = finalColumn;
 //            finalColumn = temp;
 //        }
-
         ArrayList<String> columnArray = new ArrayList();
         int i = 0;
         String aux = "";

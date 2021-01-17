@@ -8,15 +8,12 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.impl;
 
 // CHANGE THESE IMPORTS AS PER YOUR OWN PACKAGES
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.UnkownFactoryException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
-import java.util.HashMap;
 
 // KEEP THESE IMPORTS (for JUnit 4.12)
 import junit.framework.Assert;
