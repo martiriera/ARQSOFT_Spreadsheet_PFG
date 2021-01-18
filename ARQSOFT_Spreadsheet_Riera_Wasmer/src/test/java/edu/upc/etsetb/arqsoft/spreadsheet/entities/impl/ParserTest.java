@@ -83,9 +83,14 @@ public class ParserTest {
 //    public void testParserBeyZ() throws Exception {
 //        instance = parser.generateSpreadsheetFromContents(parser.getContentsFromFile("/home/reir/Desktop/s2v_test_beyond_z.txt"));
 //    }
+//    @Test
+//    public void testPrinter() throws Exception {
+//        ui.printSpreadSheet(instance);
+//    }
+
     @Test
-    public void testPrinter() throws Exception {
-        ui.printSpreadSheet(instance);
+    public void testParserFile() throws Exception {
+        parser.generateFileFromSpreadsheet(instance, "/home/reir/Desktop/toFile_test.txt");
     }
 
 }

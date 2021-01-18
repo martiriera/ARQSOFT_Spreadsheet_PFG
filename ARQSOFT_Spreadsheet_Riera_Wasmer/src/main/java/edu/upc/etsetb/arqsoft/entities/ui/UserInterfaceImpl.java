@@ -21,37 +21,16 @@ import java.util.Set;
 public class UserInterfaceImpl implements UserInterface {
 
     public void printSpreadSheet(Spreadsheet spreadsheet) {
-        Set<CellCoordinate> keyCoordinates = spreadsheet.getCellMap().keySet();
-
-        char greaterColumn = 'A';
-        int greaterRow = 1;
-        ArrayList<Character> columnsArray = new ArrayList<Character>();
-        ArrayList<Integer> rowsArray = new ArrayList<Integer>();
-
-        for (CellCoordinate key : keyCoordinates) {
-            if (key.getColumnComponent().charAt(0) > greaterColumn) {
-                greaterColumn = key.getColumnComponent().charAt(0);
-            }
-            if (key.getRowComponent() > greaterRow) {
-                greaterRow = key.getRowComponent();
-            }
-        }
-
-        for (char c = 'A'; c <= greaterColumn; c++) {
-            columnsArray.add(c);
-        }
-        for (int r = 1; r <= greaterRow; r++) {
-            rowsArray.add(r);
-        }
-
+        ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
+        ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
         for (char ca : columnsArray) {
-            System.out.print(String.format("%1$" + 3 + "s", "") + ca + String.format("%1$" +  7 + "s", ""));
+            System.out.print(String.format("%1$" + 3 + "s", "") + ca + String.format("%1$" + 7 + "s", ""));
         }
         System.out.println("");
         for (int row : rowsArray) {
             System.out.print(row + " ");
             for (char column : columnsArray) {
-                if (keyCoordinates.contains(new CellCoordinateImpl(column + "", row))) {
+                if (spreadsheet.getCellMap().keySet().contains(new CellCoordinateImpl(column + "", row))) {
                     try {
                         System.out.print(spreadsheet.getCellContentAsString(column + "" + row));
                         System.out.print(String.format("%1$" + 8 + "s", ""));
@@ -64,6 +43,5 @@ public class UserInterfaceImpl implements UserInterface {
             }
             System.out.println("");
         }
-
     }
 }

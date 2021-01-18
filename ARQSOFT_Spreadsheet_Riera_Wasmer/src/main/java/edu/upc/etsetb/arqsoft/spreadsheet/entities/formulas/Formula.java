@@ -11,6 +11,9 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.Content;
  *
  * @author JuanCarlos
  */
-public interface Formula extends Content{
+public interface Formula extends Content {
+
+    public void setFormulaString(String formulaString);
     
+    public String getFormulaString();
 }

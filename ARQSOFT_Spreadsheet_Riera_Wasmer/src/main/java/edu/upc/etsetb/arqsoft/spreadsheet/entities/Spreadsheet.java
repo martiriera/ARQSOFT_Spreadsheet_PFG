@@ -7,6 +7,7 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.FormulaEvaluator;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -27,9 +28,13 @@ public interface Spreadsheet {
     public void setFactory(SpreadsheetFactory factory);
 
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator);
-    
+
     public HashMap<CellCoordinate, Cell> fillRangeOfCells(RangeImpl rangeMap);
-    
+
     public HashMap<CellCoordinate, Cell> getCellMap();
+
+    public ArrayList<Character> getSpreadsheetColumnsArray();
+
+    public ArrayList<Integer> getSpreadsheetRowsArray();
 
 }

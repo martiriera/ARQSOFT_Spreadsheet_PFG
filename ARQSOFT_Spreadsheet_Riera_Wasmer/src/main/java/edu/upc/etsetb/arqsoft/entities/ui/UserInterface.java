@@ -6,6 +6,7 @@
 package edu.upc.etsetb.arqsoft.entities.ui;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import java.util.ArrayList;
 
 /**
  *

@@ -15,10 +15,20 @@ public class FormulaImpl implements Formula {
 
     List<FormulaComponent> formulaComponents;
     double formulaResult;
+    String formulaString;
 
     public FormulaImpl(List<FormulaComponent> formulaComponents) {
         this.formulaComponents = formulaComponents;
         this.formulaResult = 0;
+    }
+
+    @Override
+    public void setFormulaString(String formulaString) {
+        this.formulaString = formulaString;
+    }
+
+    public String getFormulaString() {
+        return formulaString;
     }
 
     @Override
@@ -28,8 +38,7 @@ public class FormulaImpl implements Formula {
 
     @Override
     public String getValueAsString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return formulaString;
     }
-
 
 }

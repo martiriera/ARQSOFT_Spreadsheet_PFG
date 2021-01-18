@@ -6,10 +6,13 @@
 package edu.upc.etsetb.arqsoft.entities.parser;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.formulas.Formula;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -18,14 +21,14 @@ import java.util.ArrayList;
  * @author Víctor Wasmer and Martí Riera
  */
 public class ParserS2V implements Parser {
-
+    
     public SpreadsheetFactory factory;
-
+    
     @Override
     public void setFactory(SpreadsheetFactory factory) {
         this.factory = factory;
     }
-
+    
     @Override
     public ArrayList<String[]> getContentsFromFile(String path) {
         FileInputStream stream = null;
@@ -52,12 +55,12 @@ public class ParserS2V implements Parser {
         }
         return allContents;
     }
-
+    
     @Override
     public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> allContents) {
         Spreadsheet spreadsheet = new SpreadsheetHashMapImpl();
         spreadsheet.setFactory(factory);
-
+        
         int rowIndex = 1;
         for (String[] rowContents : allContents) {
             ArrayList<String> columnArray = new ArrayList();
@@ -71,7 +74,7 @@ public class ParserS2V implements Parser {
                     i++;
                 } else {
                     if (i > 25) {
-                        columnArray.remove(columnArray.size()-1); //TODO: Revise this patch
+                        columnArray.remove(columnArray.size() - 1); //TODO: Revise this patch
                         columnLetter = columnArray.get((i / 26) - 1) + "" + c;
                         columnArray.add(columnLetter);
                     }
@@ -89,5 +92,38 @@ public class ParserS2V implements Parser {
         }
         return spreadsheet;
     }
-
+    
+    @Override
+    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) {
+        ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
+        ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
+        try {
+            FileWriter myWriter = new FileWriter(path);
+            for (int row : rowsArray) {
+                for (char column : columnsArray) {
+                    String cellContentString;
+                    CellCoordinateImpl cellCoordinate = new CellCoordinateImpl(column + "", row); //TODO: Do this with the factory
+                    if (spreadsheet.getCellMap().keySet().contains(cellCoordinate)) {
+                        Cell cell = spreadsheet.getCell(cellCoordinate);
+                        if (cell.cellContent instanceof Formula) { // If formula get the formula string NOT COMPUTED
+                            Formula formula = (Formula) cell.cellContent;
+                            cellContentString = formula.getFormulaString();
+                        } else {
+                            cellContentString = spreadsheet.getCellContentAsString(column + "" + row); // If Text or ANumber get it as traing
+                        }
+                        myWriter.write(cellContentString + ";");
+                    } else {
+                        myWriter.write(";");
+                    }
+                }
+                myWriter.write("\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException | BadCoordinateException e) {
+            System.out.println("Error on saving the Spreadsheet");
+            e.printStackTrace();
+        }
+    }
+    
 }

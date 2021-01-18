@@ -71,6 +71,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
                 postfixGenerator.generateFromString(formulaString);
                 List<FormulaComponent> formulaComponentsList = postfixGenerator.getResultQueue();
                 Formula formula = factory.createFormula(formulaComponentsList);
+                formula.setFormulaString(formulaString);
                 return formula;
             } catch (FormulaException e) {
                 throw new ContentException(e.getMessage());
@@ -148,13 +149,13 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     @Override
     public String getCellContentAsString(String b11) throws BadCoordinateException {
-        if (CellCoordinate.coordinateValidation(b11)) { 
+        if (CellCoordinate.coordinateValidation(b11)) {
             Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
             Content content = cell.getCellContent();
-            if (content instanceof Formula) {
-                return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content));
+            if (content instanceof Formula) { 
+                return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content)); // Return the RESULT of the formula as string
             } else {
-                return content.getValueAsString();
+                return content.getValueAsString(); // If content is ANumber or Text, they're prepared to return itself as string
             }
         } else {
             throw new BadCoordinateException("Bad coordinate format");
@@ -167,12 +168,12 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
             Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
             Content content = cell.getCellContent();
             if (content instanceof ANumber) {
-                return cell.getCellContent().getValueAsDouble();
+                return cell.getCellContent().getValueAsDouble(); // The cell has ANumber as content
             } else if (content instanceof Formula) {
-                return formulaEvaluator.evaluateFormula((FormulaImpl) content); //TODO: IMPL HERE?
+                return formulaEvaluator.evaluateFormula((FormulaImpl) content); //TODO: IMPL HERE IS OK?
             } else {
                 String stringContent = content.getValueAsString();
-                if (stringContent.isEmpty()) {
+                if (stringContent.isEmpty()) { // The cell has an empty Text as content
                     return 0.0;
                 } else {
                     throw new NoNumberException("No number exception");
@@ -183,16 +184,32 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
         }
     }
 
-//    public Cell getMatchingCell(String cellCoord) {
-//        Iterator it = cellMap.keySet().iterator();
-//        while (it.hasNext()) {
-//            CellCoordinateImpl cc = (CellCoordinateImpl) it.next();
-//            String stringCoord = cc.getColumnComponent() + String.valueOf(cc.getRowComponenent());
-//            if (cellCoord == null ? stringCoord == null : cellCoord.equals(stringCoord)) {
-//                return cellMap.get(cc);
-//            }
-//        }
-//        return null;
-//    }
+    @Override
+    public ArrayList<Character> getSpreadsheetColumnsArray() {
+        ArrayList<Character> columnsArray = new ArrayList<Character>();
+        char greaterColumn = 'A';
+        for (CellCoordinate key : this.cellMap.keySet()) {
+            if (key.getColumnComponent().charAt(0) > greaterColumn) {
+                greaterColumn = key.getColumnComponent().charAt(0);
+            }
+        }
+        for (char c = 'A'; c <= greaterColumn; c++) {
+            columnsArray.add(c);
+        }
+        return columnsArray;
+    }
 
+    public ArrayList<Integer> getSpreadsheetRowsArray() {
+        ArrayList<Integer> rowsArray = new ArrayList<Integer>();
+        int greaterRow = 1;
+        for (CellCoordinate key : this.cellMap.keySet()) {
+            if (key.getRowComponent() > greaterRow) {
+                greaterRow = key.getRowComponent();
+            }
+        }
+        for (int r = 1; r <= greaterRow; r++) {
+            rowsArray.add(r);
+        }
+        return rowsArray;
+    }
 }
