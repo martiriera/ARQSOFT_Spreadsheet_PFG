@@ -27,7 +27,7 @@ public class ParserS2V implements Parser {
     }
 
     @Override
-    public ArrayList<String[]> getAllContentsFromFile(String path) {
+    public ArrayList<String[]> getContentsFromFile(String path) {
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(path);

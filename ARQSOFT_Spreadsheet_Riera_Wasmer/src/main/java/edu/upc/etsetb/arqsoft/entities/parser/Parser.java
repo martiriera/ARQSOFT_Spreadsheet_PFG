@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author Víctor Wasmer and Martí Riera
  */
 public interface Parser {
-   public ArrayList<String[]> getAllContentsFromFile(String path);
+   public ArrayList<String[]> getContentsFromFile(String path);
    public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> contents);
    public void setFactory(SpreadsheetFactory factory);
 }
