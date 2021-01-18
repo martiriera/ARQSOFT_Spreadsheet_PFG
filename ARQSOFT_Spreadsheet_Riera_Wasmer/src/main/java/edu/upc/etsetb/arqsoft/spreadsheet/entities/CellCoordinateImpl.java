@@ -16,16 +16,18 @@ public class CellCoordinateImpl implements CellCoordinate {
     private String columnComponent;
     private int rowComponent;
 
-    public CellCoordinateImpl(String columnComponent, int rowComponenent) {
+    public CellCoordinateImpl(String columnComponent, int rowComponent) {
         this.columnComponent = columnComponent;
-        this.rowComponent = rowComponenent;
+        this.rowComponent = rowComponent;
     }
 
+    @Override
     public String getColumnComponent() {
         return columnComponent;
     }
 
-    public int getRowComponenent() {
+    @Override
+    public int getRowComponent() {
         return rowComponent;
     }
 

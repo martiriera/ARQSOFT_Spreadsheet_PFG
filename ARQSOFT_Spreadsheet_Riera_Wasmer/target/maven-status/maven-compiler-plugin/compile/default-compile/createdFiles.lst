@@ -28,6 +28,7 @@ edu/upc/etsetb/arqsoft/spreadsheet/entities/ANumber.class
 edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/UnknownTokenTypeException.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/functions/FunctionsRegister.class
 edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/Token.class
+edu/upc/etsetb/arqsoft/entities/ui/UserInterfaceImpl.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/functions/impl/FunctionImpl.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Operand.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/FormulaEvaluator.class
@@ -41,6 +42,7 @@ edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/SyntaxChecker.class
 edu/upc/etsetb/arqsoft/entities/parser/Parser.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/factories/impl/DefaultFactory.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/OperatorImpl.class
+edu/upc/etsetb/arqsoft/entities/ui/UserInterface.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/RangeImpl.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/functions/impl/AverageFunction.class
 edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/TokenType.class

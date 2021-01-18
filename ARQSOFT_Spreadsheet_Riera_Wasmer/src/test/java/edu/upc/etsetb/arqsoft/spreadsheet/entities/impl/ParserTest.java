@@ -8,6 +8,8 @@ package edu.upc.etsetb.arqsoft.spreadsheet.entities.impl;
 
 // CHANGE THESE IMPORTS AS PER YOUR OWN PACKAGES
 import edu.upc.etsetb.arqsoft.entities.parser.ParserS2V;
+import edu.upc.etsetb.arqsoft.entities.ui.UserInterface;
+import edu.upc.etsetb.arqsoft.entities.ui.UserInterfaceImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
@@ -36,22 +38,24 @@ public class ParserTest {
     // DECLARE THE INSTANCE AS A REFERENCE OF AN OBJECT TO YOUR SPREADSHEET INTERFACE OR CLASS
     private Spreadsheet instance;
     private ParserS2V parser;
+    UserInterface ui;
 
     public ParserTest()
             throws ContentException, UnkownFactoryException, BadCoordinateException {
         // IMPORTANT: REPLACE WITH A SET OF SENTENCES THAT GENERATE AN 
         // ENVIRONMENT READY FOR SETTING CONTENTS IN CELLS OF THE SPREADSHEET 
         // AND FOR COMPUTING VALUES FOR THESE CONTENTS.
-        this.instance = new SpreadsheetHashMapImpl();
         SpreadsheetFactory factory = SpreadsheetFactory.getInstance("MYFACTORY");
+        parser = new ParserS2V();
+        parser.setFactory(factory);
+        instance = parser.generateSpreadsheetFromContents(parser.getContentsFromFile("/home/reir/Desktop/s2v_test.txt"));
         this.instance.setFactory(factory);
         FormulaEvaluator formEvaluator = factory.createFormulaEvaluator();
         formEvaluator.setFactory(factory);
         formEvaluator.setSheet(instance);
         this.instance.setFormulaEvaluator(formEvaluator);
 
-        parser = new ParserS2V();
-        parser.setFactory(factory);
+        ui = new UserInterfaceImpl();
     }
 
     @BeforeClass
@@ -75,9 +79,13 @@ public class ParserTest {
 //        instance = parser.generateSpreadsheet(parser.getAllContents("/home/reir/Desktop/s2v_test.txt"));
 //    }
 //    
+//    @Test
+//    public void testParserBeyZ() throws Exception {
+//        instance = parser.generateSpreadsheetFromContents(parser.getContentsFromFile("/home/reir/Desktop/s2v_test_beyond_z.txt"));
+//    }
     @Test
-    public void testParserBeyZ() throws Exception {
-        instance = parser.generateSpreadsheetFromContents(parser.getAllContentsFromFile("/home/reir/Desktop/s2v_test_beyond_z.txt"));
+    public void testPrinter() throws Exception {
+        ui.printSpreadSheet(instance);
     }
 
 }

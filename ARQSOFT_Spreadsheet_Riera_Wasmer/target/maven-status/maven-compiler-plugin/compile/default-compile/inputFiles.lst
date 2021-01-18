@@ -44,8 +44,10 @@
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Operator.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/TokenType.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/VisitorFormulaComponents.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/entities/ui/UserInterfaceImpl.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/functions/impl/FunctionRegisterImpl.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/SyntaxChecker.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/ContentException.java
+/home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/entities/ui/UserInterface.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/SyntaxException.java
 /home/reir/git/ARQSOFT_Spreadsheet_PFG/ARQSOFT_Spreadsheet_Riera_Wasmer/src/main/java/edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/OperatorImpl.java

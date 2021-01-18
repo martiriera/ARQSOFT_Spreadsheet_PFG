@@ -29,5 +29,7 @@ public interface Spreadsheet {
     public void setFormulaEvaluator(FormulaEvaluator formEvaluator);
     
     public HashMap<CellCoordinate, Cell> fillRangeOfCells(RangeImpl rangeMap);
+    
+    public HashMap<CellCoordinate, Cell> getCellMap();
 
 }

@@ -13,6 +13,10 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  * @author JuanCarlos
  */
 public interface CellCoordinate extends Operand, Argument {
+    
+    public String getColumnComponent();
+    
+    public int getRowComponent();
 
     public static boolean coordinateValidation(String coordinate) {
         // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)

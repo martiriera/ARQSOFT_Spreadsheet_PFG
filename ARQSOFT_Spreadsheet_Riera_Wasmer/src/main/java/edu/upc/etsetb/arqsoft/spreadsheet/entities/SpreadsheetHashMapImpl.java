@@ -33,6 +33,11 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     }
 
     @Override
+    public HashMap<CellCoordinate, Cell> getCellMap() {
+        return cellMap;
+    }
+
+    @Override
     public void setFactory(SpreadsheetFactory factory) {
         this.factory = factory;
     }
@@ -99,7 +104,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 //        int numberOfRows = Math.abs(finalCellCoord.rowComponenent - originCellCoord.rowComponenent);
 
         for (int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
-            for (int rowIndex = initialCoordinate.getRowComponenent(); rowIndex <= finalCoordinate.getRowComponenent(); rowIndex++) {
+            for (int rowIndex = initialCoordinate.getRowComponent(); rowIndex <= finalCoordinate.getRowComponent(); rowIndex++) {
 
                 CellCoordinate coordinateOfCellToPut = factory.createCellCoordinate(columnsToIterate.get(columnIndex) + String.valueOf(rowIndex));
                 Cell cellToPut = this.getCell(coordinateOfCellToPut);

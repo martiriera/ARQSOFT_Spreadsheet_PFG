@@ -14,14 +14,16 @@ import java.util.List;
 public class FormulaImpl implements Formula {
 
     List<FormulaComponent> formulaComponents;
+    double formulaResult;
 
     public FormulaImpl(List<FormulaComponent> formulaComponents) {
         this.formulaComponents = formulaComponents;
+        this.formulaResult = 0;
     }
 
     @Override
     public double getValueAsDouble() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return formulaResult;
     }
 
     @Override

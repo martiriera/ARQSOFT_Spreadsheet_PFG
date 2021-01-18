@@ -26,10 +26,9 @@ public class FormulaEvaluator {
     }
 
     public double evaluateFormula(FormulaImpl formula) {//TODO: Formula o formula impl?
-
         EvaluatorPostFix evaluator = new EvaluatorPostFix(spreadsheet, factory);
-        return evaluator.evaluatePostFix(formula.formulaComponents);
-        //TODO: Trobar lloc on s'ha de fer aixo i ordre
-
+        double formulaResult = evaluator.evaluatePostFix(formula.formulaComponents);
+        formula.formulaResult = formulaResult;
+        return formulaResult;
     }
 }
