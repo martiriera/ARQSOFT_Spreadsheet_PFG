@@ -77,7 +77,7 @@ public class ParserTest {
 //    
     @Test
     public void testParserBeyZ() throws Exception {
-        instance = parser.generateSpreadsheet(parser.getAllContents("/home/reir/Desktop/s2v_test_beyond_z.txt"));
+        instance = parser.generateSpreadsheetFromContents(parser.getAllContentsFromFile("/home/reir/Desktop/s2v_test_beyond_z.txt"));
     }
 
 }

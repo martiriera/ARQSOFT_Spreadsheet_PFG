@@ -27,7 +27,7 @@ public class ParserS2V implements Parser {
     }
 
     @Override
-    public ArrayList<String[]> getAllContents(String path) {
+    public ArrayList<String[]> getAllContentsFromFile(String path) {
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(path);
@@ -54,7 +54,7 @@ public class ParserS2V implements Parser {
     }
 
     @Override
-    public Spreadsheet generateSpreadsheet(ArrayList<String[]> allContents) {
+    public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> allContents) {
         Spreadsheet spreadsheet = new SpreadsheetHashMapImpl();
         spreadsheet.setFactory(factory);
 
@@ -71,7 +71,7 @@ public class ParserS2V implements Parser {
                     i++;
                 } else {
                     if (i > 25) {
-                        columnArray.remove(columnArray.size()-1); //TODO: Revise this
+                        columnArray.remove(columnArray.size()-1); //TODO: Revise this patch
                         columnLetter = columnArray.get((i / 26) - 1) + "" + c;
                         columnArray.add(columnLetter);
                     }
