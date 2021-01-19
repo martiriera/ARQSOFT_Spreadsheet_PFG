@@ -117,9 +117,6 @@ public class UserInterfaceImpl implements UserInterface {
     public void printSpreadSheet() {
         ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
         ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
-        for (char ca : columnsArray) {
-            System.out.print(String.format("%1$" + 3 + "s", "") + ca + String.format("%1$" + 7 + "s", ""));
-        }
         System.out.println("");
         for (int row : rowsArray) {
             System.out.print(row + "| ");

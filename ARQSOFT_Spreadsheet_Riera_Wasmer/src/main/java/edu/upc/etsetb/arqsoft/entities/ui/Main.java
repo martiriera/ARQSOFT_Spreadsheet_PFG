@@ -54,6 +54,7 @@ class Main {
         controller.setFactory(factory);
         controller.setFormulaEvaluator(formEvaluator);
         formEvaluator.setSheet(controller);
+        factory.setSpreadsheet(controller);
 
         ui.setSpreadsheetAndFactory(controller, factory);
         ui.printSpreadSheet();
