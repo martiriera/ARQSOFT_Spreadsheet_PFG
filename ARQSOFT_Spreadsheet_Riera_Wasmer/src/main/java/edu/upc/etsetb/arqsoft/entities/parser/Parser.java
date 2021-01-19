@@ -7,6 +7,8 @@ package edu.upc.etsetb.arqsoft.entities.parser;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,11 +19,10 @@ public interface Parser {
 
     public void setFactory(SpreadsheetFactory factory);
 
-    public ArrayList<String[]> getContentsFromFile(String path);
+    public ArrayList<String[]> getContentsFromFile(String path) throws FileNotFoundException, IOException;
 
     public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> contents);
-    
+
     public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path);
-    
-    
+
 }

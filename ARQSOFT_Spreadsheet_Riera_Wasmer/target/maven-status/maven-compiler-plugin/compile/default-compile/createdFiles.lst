@@ -49,5 +49,6 @@ edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/TokenType.class
 edu/upc/etsetb/arqsoft/spreadsheet/usecases/postfix/PostFixGenerator.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/Text.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Operator.class
+edu/upc/etsetb/arqsoft/entities/ui/Main.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/formulas/Formula.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/Range.class

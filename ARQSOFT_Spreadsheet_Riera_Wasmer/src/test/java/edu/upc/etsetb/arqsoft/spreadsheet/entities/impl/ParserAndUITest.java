@@ -33,14 +33,14 @@ import org.junit.Test;
  *
  * @author Juan Carlos Cruellas at Universidad Politécnica de Cataluña
  */
-public class ParserTest {
+public class ParserAndUITest {
 
     // DECLARE THE INSTANCE AS A REFERENCE OF AN OBJECT TO YOUR SPREADSHEET INTERFACE OR CLASS
     private Spreadsheet instance;
     private ParserS2V parser;
     UserInterface ui;
 
-    public ParserTest()
+    public ParserAndUITest()
             throws ContentException, UnkownFactoryException, BadCoordinateException {
         // IMPORTANT: REPLACE WITH A SET OF SENTENCES THAT GENERATE AN 
         // ENVIRONMENT READY FOR SETTING CONTENTS IN CELLS OF THE SPREADSHEET 
@@ -88,9 +88,14 @@ public class ParserTest {
 //        ui.printSpreadSheet(instance);
 //    }
 
+//    @Test
+//    public void testParserFile() throws Exception {
+//        parser.generateFileFromSpreadsheet(instance, "/home/reir/Desktop/toFile_test.txt");
+//    }
+        
     @Test
-    public void testParserFile() throws Exception {
-        parser.generateFileFromSpreadsheet(instance, "/home/reir/Desktop/toFile_test.txt");
+    public void testUI() throws Exception {
+        ui.excuteUserInterface();
     }
 
 }

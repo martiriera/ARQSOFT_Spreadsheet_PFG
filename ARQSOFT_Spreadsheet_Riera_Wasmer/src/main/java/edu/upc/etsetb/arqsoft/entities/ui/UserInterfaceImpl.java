@@ -6,13 +6,11 @@
 package edu.upc.etsetb.arqsoft.entities.ui;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.Scanner;
 
 /**
  *
@@ -20,6 +18,31 @@ import java.util.Set;
  */
 public class UserInterfaceImpl implements UserInterface {
 
+    @Override
+    public String initSpreadsheetDialog() throws IOException {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String command;
+
+        System.out.println("0 - Create a new spreadsheet");
+        System.out.println("1 - Load an existing spreadsheet");
+
+        command = reader.readLine();
+
+        switch (command) {
+            case "0":
+                return "";
+            case "1":
+                System.out.println("Enter the path of the spreadsheet");
+                String path = reader.readLine();
+                return path;
+            default:
+                this.wrongComand();
+                return this.initSpreadsheetDialog();
+        }
+    }
+
+    @Override
     public void printSpreadSheet(Spreadsheet spreadsheet) {
         ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
         ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
@@ -28,20 +51,24 @@ public class UserInterfaceImpl implements UserInterface {
         }
         System.out.println("");
         for (int row : rowsArray) {
-            System.out.print(row + " ");
+            System.out.print(row + "| ");
             for (char column : columnsArray) {
-                if (spreadsheet.getCellMap().keySet().contains(new CellCoordinateImpl(column + "", row))) {
+                if (spreadsheet.getCellMap().keySet().contains(new CellCoordinateImpl(column + "", row))) { // TODO: Do this with factory
                     try {
                         System.out.print(spreadsheet.getCellContentAsString(column + "" + row));
-                        System.out.print(String.format("%1$" + 8 + "s", ""));
+                        System.out.print(String.format("%1$" + 8 + "s", "")+"|");
                     } catch (BadCoordinateException e) {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                    System.out.print(String.format("%1$" + 13 + "s", ""));
+                    System.out.print(String.format("%1$" + 13 + "s", "")+"|");
                 }
             }
             System.out.println("");
         }
+    }
+
+    public void wrongComand() {
+        System.out.println("Oops, something wrong with your command\n");
     }
 }

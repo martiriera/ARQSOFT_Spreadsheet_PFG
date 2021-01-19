@@ -21,21 +21,21 @@ import java.util.ArrayList;
  * @author Víctor Wasmer and Martí Riera
  */
 public class ParserS2V implements Parser {
-    
+
     public SpreadsheetFactory factory;
-    
+
     @Override
     public void setFactory(SpreadsheetFactory factory) {
         this.factory = factory;
     }
-    
+
     @Override
-    public ArrayList<String[]> getContentsFromFile(String path) {
+    public ArrayList<String[]> getContentsFromFile(String path) throws FileNotFoundException, IOException {
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw e;
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String strLine;
@@ -46,21 +46,21 @@ public class ParserS2V implements Parser {
                 allContents.add(rowContents);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
         try {
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
         return allContents;
     }
-    
+
     @Override
     public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> allContents) {
         Spreadsheet spreadsheet = new SpreadsheetHashMapImpl();
         spreadsheet.setFactory(factory);
-        
+
         int rowIndex = 1;
         for (String[] rowContents : allContents) {
             ArrayList<String> columnArray = new ArrayList();
@@ -80,7 +80,7 @@ public class ParserS2V implements Parser {
                     }
                     try {
                         spreadsheet.setCellContent(columnLetter + String.valueOf(rowIndex), content);
-                        System.out.println("Content " + content + " set on coordinate " + columnLetter + String.valueOf(rowIndex));
+//                        System.out.println("Content " + content + " set on coordinate " + columnLetter + String.valueOf(rowIndex));
                     } catch (ContentException | BadCoordinateException e) {
                         System.out.println(e.getMessage());
                     }
@@ -92,7 +92,7 @@ public class ParserS2V implements Parser {
         }
         return spreadsheet;
     }
-    
+
     @Override
     public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) {
         ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
@@ -109,9 +109,12 @@ public class ParserS2V implements Parser {
                             Formula formula = (Formula) cell.cellContent;
                             cellContentString = formula.getFormulaString();
                         } else {
-                            cellContentString = spreadsheet.getCellContentAsString(column + "" + row); // If Text or ANumber get it as traing
+                            cellContentString = spreadsheet.getCellContentAsString(column + "" + row); // If Text or ANumber get it as string
                         }
-                        myWriter.write(cellContentString + ";");
+                        myWriter.write(cellContentString);
+                        if (columnsArray.indexOf(column) != columnsArray.size() - 1) {
+                            myWriter.write(";");
+                        }
                     } else {
                         myWriter.write(";");
                     }
@@ -125,5 +128,5 @@ public class ParserS2V implements Parser {
             e.printStackTrace();
         }
     }
-    
+
 }

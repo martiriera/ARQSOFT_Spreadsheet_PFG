@@ -3,4 +3,4 @@ edu/upc/etsetb/arqsoft/spreadsheet/entities/impl/FunctionsTest.class
 edu/upc/etsetb/arqsoft/spreadsheet/postfix/test/PostFixGeneratorIntTesting.class
 edu/upc/etsetb/arqsoft/spreadsheet/entities/impl/SpreadsheetTest.class
 edu/upc/etsetb/arqsoft/spreadsheet/postfix/test/TokenizerIntTest.class
-edu/upc/etsetb/arqsoft/spreadsheet/entities/impl/ParserTest.class
+edu/upc/etsetb/arqsoft/spreadsheet/entities/impl/ParserAndUITest.class

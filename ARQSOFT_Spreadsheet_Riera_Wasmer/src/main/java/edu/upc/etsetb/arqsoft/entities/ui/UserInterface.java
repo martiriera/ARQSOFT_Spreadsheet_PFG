@@ -6,7 +6,7 @@
 package edu.upc.etsetb.arqsoft.entities.ui;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  *
@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public interface UserInterface {
 
+    public String initSpreadsheetDialog() throws IOException;
+    
     public void printSpreadSheet(Spreadsheet spreadsheet);
     
 }

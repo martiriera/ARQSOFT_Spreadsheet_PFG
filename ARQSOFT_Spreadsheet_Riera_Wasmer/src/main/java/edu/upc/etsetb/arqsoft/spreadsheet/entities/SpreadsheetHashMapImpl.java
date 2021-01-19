@@ -71,7 +71,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
                 postfixGenerator.generateFromString(formulaString);
                 List<FormulaComponent> formulaComponentsList = postfixGenerator.getResultQueue();
                 Formula formula = factory.createFormula(formulaComponentsList);
-                formula.setFormulaString(formulaString);
+                formula.setFormulaString(content);
                 return formula;
             } catch (FormulaException e) {
                 throw new ContentException(e.getMessage());
