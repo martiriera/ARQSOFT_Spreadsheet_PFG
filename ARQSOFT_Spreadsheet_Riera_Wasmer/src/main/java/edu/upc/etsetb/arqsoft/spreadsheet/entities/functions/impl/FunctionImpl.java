@@ -38,19 +38,4 @@ public abstract class FunctionImpl implements Function {
         visitor.visitFunction(this);
     }
     
-    //TODO: Validate this substitution
-    //TODO: Cal que els args segueixin amb al matiex ordre que tal com arriben?
-//    public ArrayList<Argument> replaceCoordinatesByCells(ArrayList<Argument> args) {
-//        for (Argument argument : args) {
-//            if (argument instanceof CellCoordinateImpl) {
-//                args.set(args.indexOf(argument), spreadsheet.getCell((CellCoordinateImpl) argument));
-//            }else if(argument instanceof RangeImpl){
-//                Iterator it = ((RangeImpl) argument).cellRangeMap.values().iterator();
-//                while(it.hasNext()){
-//                    args.add((Cell) it.next());
-//                }
-//            }
-//        }
-//        return args;
-//    }
 }

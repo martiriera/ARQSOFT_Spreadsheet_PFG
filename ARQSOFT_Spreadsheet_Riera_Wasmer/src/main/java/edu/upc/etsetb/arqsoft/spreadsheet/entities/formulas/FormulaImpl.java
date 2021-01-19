@@ -21,6 +21,16 @@ public class FormulaImpl implements Formula {
         this.formulaComponents = formulaComponents;
         this.formulaResult = 0;
     }
+    
+    @Override
+    public List<FormulaComponent> getFormulaComponents() {
+        return formulaComponents;
+    }
+
+    @Override
+    public void setFormulaResult(double formulaResult) {
+        this.formulaResult = formulaResult;
+    }
 
     @Override
     public void setFormulaString(String formulaString) {

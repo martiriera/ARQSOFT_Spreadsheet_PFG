@@ -167,12 +167,12 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     @Override
     public double getCellContentAsDouble(String b11) throws BadCoordinateException, NoNumberException {
         if (CellCoordinate.coordinateValidation(b11)) {
-            Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
+            Cell cell = this.getCell(factory.createCellCoordinate(b11)); //CAUTION: This will return NULL if the cell is not on the map
             Content content = cell.getCellContent();
             if (content instanceof ANumber) {
                 return cell.getCellContent().getValueAsDouble(); // The cell has ANumber as content
             } else if (content instanceof Formula) {
-                return formulaEvaluator.evaluateFormula((FormulaImpl) content); //TODO: IMPL HERE IS OK?
+                return formulaEvaluator.evaluateFormula((Formula) content); 
             } else {
                 String stringContent = content.getValueAsString();
                 if (stringContent.isEmpty()) { // The cell has an empty Text as content

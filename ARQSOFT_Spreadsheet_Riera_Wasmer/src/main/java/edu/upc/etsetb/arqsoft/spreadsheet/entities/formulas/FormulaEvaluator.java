@@ -25,10 +25,10 @@ public class FormulaEvaluator {
         this.spreadsheet = spreadsheet;
     }
 
-    public double evaluateFormula(FormulaImpl formula) {//TODO: Formula o formula impl?
+    public double evaluateFormula(Formula formula) {
         EvaluatorPostFix evaluator = new EvaluatorPostFix(spreadsheet, factory);
-        double formulaResult = evaluator.evaluatePostFix(formula.formulaComponents);
-        formula.formulaResult = formulaResult;
+        double formulaResult = evaluator.evaluatePostFix(formula.getFormulaComponents());
+        formula.setFormulaResult(formulaResult);
         return formulaResult;
     }
 }

@@ -40,7 +40,6 @@ public class SumFunction extends FunctionImpl {
         return result;
     }
 
-    // TODO: Review gets
     @Override
     public double getArgumentValue() {
         return this.calculateFunction();
