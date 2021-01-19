@@ -12,5 +12,4 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Argument;
  * @author JuanCarlos
  */
 public interface Range extends Argument{
- // TODO: RangeImpl i implementar el getARgumentValue que exten el rang en diferents cel·les
 }

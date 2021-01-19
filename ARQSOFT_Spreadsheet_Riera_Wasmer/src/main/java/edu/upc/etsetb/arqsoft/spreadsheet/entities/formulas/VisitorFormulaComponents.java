@@ -10,7 +10,6 @@ import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.functions.Function;
-import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -46,7 +45,6 @@ public class VisitorFormulaComponents implements Visitor {
 
     @Override
     public void visitCellCoordinate(CellCoordinate cellCoordinate) {
-        //TODO: Same trick as on Function? (having the spreadsheet available here, to locate the cell)
         double cellContentDoubleValue = spreadsheet.getCell(cellCoordinate).getCellContent().getValueAsDouble();
         stack.push(factory.createNumber(cellContentDoubleValue));
     }

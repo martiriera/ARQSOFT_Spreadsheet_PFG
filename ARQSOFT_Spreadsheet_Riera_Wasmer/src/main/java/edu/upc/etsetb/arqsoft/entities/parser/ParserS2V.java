@@ -7,7 +7,7 @@ package edu.upc.etsetb.arqsoft.entities.parser;
 
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Cell;
-import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinateImpl;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.CellCoordinate;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
@@ -94,7 +94,7 @@ public class ParserS2V implements Parser {
     }
 
     @Override
-    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) {
+    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) throws IOException {
         ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
         ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
         try {
@@ -102,7 +102,7 @@ public class ParserS2V implements Parser {
             for (int row : rowsArray) {
                 for (char column : columnsArray) {
                     String cellContentString;
-                    CellCoordinateImpl cellCoordinate = new CellCoordinateImpl(column + "", row); //TODO: Do this with the factory
+                    CellCoordinate cellCoordinate = factory.createCellCoordinate(column + ""+row); 
                     if (spreadsheet.getCellMap().keySet().contains(cellCoordinate)) {
                         Cell cell = spreadsheet.getCell(cellCoordinate);
                         if (cell.cellContent instanceof Formula) { // If formula get the formula string NOT COMPUTED

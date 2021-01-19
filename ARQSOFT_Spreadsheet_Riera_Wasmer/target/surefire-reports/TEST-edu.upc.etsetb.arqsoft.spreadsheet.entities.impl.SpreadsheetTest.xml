@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" time="0.163" errors="0" skipped="0">
+<testsuite tests="15" failures="0" name="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" time="0.15" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="15.0.1+9-18"/>
@@ -57,19 +57,19 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_2Level2RBs" time="0.02"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs" time="0.008"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs" time="0.011"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs" time="0.005"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1" time="0.015"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2" time="0.015"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3" time="0.029"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4" time="0.021"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_1LevelRBs" time="0.006"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_2Level2RBs" time="0.033"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_1LevelRBs" time="0.002"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsArgs" time="0.015"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs" time="0.003"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_1" time="0.016"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_2" time="0.03"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_3" time="0.01"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesFunctionsArgs_4" time="0.012"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_1LevelRBs" time="0.01"/>
   <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_TextContent" time="0.001"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs" time="0.013"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs" time="0.009"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers" time="0.004"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs" time="0.005"/>
-  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_NumContent" time="0.001"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumArgs" time="0.001"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_2Level2RBs" time="0.002"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers" time="0.003"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_Formula_Numbers_CellRefs_Func_NumCellRefsRangesArgs" time="0.007"/>
+  <testcase classname="edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest" name="testSetCellContent_NumContent" time="0.005"/>
 </testsuite>

@@ -23,6 +23,6 @@ public interface Parser {
 
     public Spreadsheet generateSpreadsheetFromContents(ArrayList<String[]> contents);
 
-    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path);
+    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) throws IOException;
 
 }

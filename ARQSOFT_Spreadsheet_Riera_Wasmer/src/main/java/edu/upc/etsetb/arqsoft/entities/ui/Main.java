@@ -7,6 +7,8 @@ package edu.upc.etsetb.arqsoft.entities.ui;
 
 import edu.upc.etsetb.arqsoft.entities.parser.Parser;
 import edu.upc.etsetb.arqsoft.entities.parser.ParserS2V;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.SpreadsheetHashMapImpl;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
  */
 class Main {
 
-    public static void main(String[] args) throws IOException, UnkownFactoryException {
+    public static void main(String[] args) throws IOException, UnkownFactoryException, BadCoordinateException, ContentException {
         final UserInterface ui = new UserInterfaceImpl();
         final SpreadsheetFactory factory = SpreadsheetFactory.getInstance("MYFACTORY");
         final Parser parser = new ParserS2V();
@@ -52,6 +54,24 @@ class Main {
         controller.setFactory(factory);
         controller.setFormulaEvaluator(formEvaluator);
         formEvaluator.setSheet(controller);
-        ui.printSpreadSheet(controller);
+
+        ui.setSpreadsheetAndFactory(controller, factory);
+        ui.printSpreadSheet();
+        boolean closeSpreadsheet = ui.editSpreadsheetDialog();
+        while (!closeSpreadsheet) {
+            try {
+                closeSpreadsheet = ui.editSpreadsheetDialog();
+            } catch (BadCoordinateException e) {
+                System.out.println("Bad coordiante format, introduce a new one (i.e A1)");
+                closeSpreadsheet = ui.editSpreadsheetDialog();
+            } catch (ContentException e) {
+                System.out.println("Bad formula format");
+                closeSpreadsheet = ui.editSpreadsheetDialog();
+            }
+        }
+        String pathToSave = ui.closeSpreadsheetDialog();
+        if(!pathToSave.isEmpty()){
+            parser.generateFileFromSpreadsheet(controller, pathToSave);
+        }
     }
 }

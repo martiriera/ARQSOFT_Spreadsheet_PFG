@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: edu.upc.etsetb.arqsoft.spreadsheet.entities.impl.SpreadsheetTest
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.373 sec
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.527 sec

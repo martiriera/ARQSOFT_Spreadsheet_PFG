@@ -14,9 +14,7 @@ import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.FormulaException;
 import edu.upc.etsetb.arqsoft.spreadsheet.usecases.postfix.PostFixGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -49,7 +47,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
 
     @Override
     public void setCellContent(String cellCoord, String content) throws ContentException, BadCoordinateException {
-        if (CellCoordinate.coordinateValidation(cellCoord)) { //TODO: This can throw an exception
+        if (CellCoordinate.coordinateValidation(cellCoord)) { 
             try {
                 Content classifiedContent = classifyContent(content);
                 cellMap.put(factory.createCellCoordinate(cellCoord), new Cell(classifiedContent));
@@ -57,7 +55,7 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
                 throw e;
             }
         } else {
-            throw new BadCoordinateException("Wrong cellCoordinate format.");
+            throw new BadCoordinateException("Bad coordinate format");
         }
     }
 
@@ -150,12 +148,16 @@ public class SpreadsheetHashMapImpl implements Spreadsheet {
     @Override
     public String getCellContentAsString(String b11) throws BadCoordinateException {
         if (CellCoordinate.coordinateValidation(b11)) {
-            Cell cell = this.getCell(factory.createCellCoordinate(b11)); //TODO: This will return NULL if the cell is not on the map
-            Content content = cell.getCellContent();
-            if (content instanceof Formula) { 
-                return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content)); // Return the RESULT of the formula as string
+            Cell cell = this.getCell(factory.createCellCoordinate(b11));
+            if (cell != null) {
+                Content content = cell.getCellContent();
+                if (content instanceof Formula) {
+                    return String.valueOf(formulaEvaluator.evaluateFormula((FormulaImpl) content)); // Return the RESULT of the formula as string
+                } else {
+                    return content.getValueAsString(); // If content is ANumber or Text, they're prepared to return itself as string
+                }
             } else {
-                return content.getValueAsString(); // If content is ANumber or Text, they're prepared to return itself as string
+                return null;
             }
         } else {
             throw new BadCoordinateException("Bad coordinate format");

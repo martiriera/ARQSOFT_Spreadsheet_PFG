@@ -5,7 +5,10 @@
  */
 package edu.upc.etsetb.arqsoft.entities.ui;
 
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.BadCoordinateException;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.ContentException;
 import edu.upc.etsetb.arqsoft.spreadsheet.entities.Spreadsheet;
+import edu.upc.etsetb.arqsoft.spreadsheet.entities.factories.SpreadsheetFactory;
 import java.io.IOException;
 
 /**
@@ -14,8 +17,14 @@ import java.io.IOException;
  */
 public interface UserInterface {
 
+    public void setSpreadsheetAndFactory(Spreadsheet spreadsheet, SpreadsheetFactory factory);
+    
     public String initSpreadsheetDialog() throws IOException;
     
-    public void printSpreadSheet(Spreadsheet spreadsheet);
+    public boolean editSpreadsheetDialog() throws IOException, BadCoordinateException, ContentException;
+    
+    public void printSpreadSheet();
+
+    public String closeSpreadsheetDialog() throws IOException;
     
 }

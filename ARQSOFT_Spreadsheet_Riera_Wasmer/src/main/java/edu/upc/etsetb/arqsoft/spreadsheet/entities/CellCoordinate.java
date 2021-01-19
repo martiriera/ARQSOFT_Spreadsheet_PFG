@@ -19,9 +19,8 @@ public interface CellCoordinate extends Operand, Argument {
     public int getRowComponent();
 
     public static boolean coordinateValidation(String coordinate) {
-        // (?<=\\D)(?=\\d) matches a position between a non-digit (\D) and a digit (\d)
-        String[] separateCoordinate = coordinate.split("(?<=\\D)(?=\\d)");
-
+        // "(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)" matches a position between a non-digit (\D) and a digit (\d)
+        String[] separateCoordinate = coordinate.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)|(?<=\\d)(?=\\d)|(?<=\\D)(?=\\D)");
         return isValidColumn(separateCoordinate[0]) & isValidRow(separateCoordinate[1]);
     }
 
