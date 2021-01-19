@@ -71,8 +71,20 @@ class Main {
             }
         }
         String pathToSave = ui.closeSpreadsheetDialog();
-        if(!pathToSave.isEmpty()){
-            parser.generateFileFromSpreadsheet(controller, pathToSave);
+        if (!pathToSave.isEmpty()) {
+            boolean validSavePath = false;
+            while (validSavePath == false) {
+                try {
+                    parser.generateFileFromSpreadsheet(controller, pathToSave);
+                    validSavePath = true;
+                } catch (IOException e) {
+                    System.out.println("Path \"" + pathToSave + "\" is not valid\n");
+                    pathToSave = ui.closeSpreadsheetDialog();
+                    if (pathToSave.isEmpty()) {
+                        validSavePath = true;
+                    };
+                }
+            }
         }
     }
 }

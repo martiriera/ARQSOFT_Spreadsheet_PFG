@@ -94,7 +94,7 @@ public class ParserS2V implements Parser {
     }
 
     @Override
-    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) throws IOException {
+    public void generateFileFromSpreadsheet(Spreadsheet spreadsheet, String path) throws IOException, BadCoordinateException {
         ArrayList<Character> columnsArray = spreadsheet.getSpreadsheetColumnsArray();
         ArrayList<Integer> rowsArray = spreadsheet.getSpreadsheetRowsArray();
         try {
@@ -102,7 +102,7 @@ public class ParserS2V implements Parser {
             for (int row : rowsArray) {
                 for (char column : columnsArray) {
                     String cellContentString;
-                    CellCoordinate cellCoordinate = factory.createCellCoordinate(column + ""+row); 
+                    CellCoordinate cellCoordinate = factory.createCellCoordinate(column + "" + row);
                     if (spreadsheet.getCellMap().keySet().contains(cellCoordinate)) {
                         Cell cell = spreadsheet.getCell(cellCoordinate);
                         if (cell.cellContent instanceof Formula) { // If formula get the formula string NOT COMPUTED
@@ -122,10 +122,12 @@ public class ParserS2V implements Parser {
                 myWriter.write("\n");
             }
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException | BadCoordinateException e) {
-            System.out.println("Error on saving the Spreadsheet");
-            e.printStackTrace();
+            System.out.println("The spreadsheed has been saved successfully");
+        } catch (IOException e) {
+            System.out.println("Error on saving the spreadsheet");
+            throw e;
+        } catch (BadCoordinateException e) {
+            throw e;
         }
     }
 
